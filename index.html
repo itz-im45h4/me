@@ -155,11 +155,11 @@
             top: 1rem;
             left: 1rem;
             z-index: 2;
-            transition: transform 0.3s ease, color 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), color 0.3s ease;
         }
         
         .project-item:hover .number-label {
-            transform: scale(1.2);
+            transform: scale(1.1);
             color: var(--accent-color);
         }
         
@@ -177,8 +177,8 @@
             font-weight: 400;
             letter-spacing: 0.05em;
             opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(5px);
+            transition: opacity 0.25s ease-in-out, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
         
         .project-item:hover .tech-tag {
@@ -206,6 +206,14 @@
             grid-column: 7 / -1;
             grid-row: 1;
             height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Match bio image container to header image formatting */
+        .bio-image {
+            grid-column: 7 / -1;
+            grid-row: 1;
+            height: 100%;
             overflow: hidden;
         }
 
@@ -272,7 +280,7 @@
         .bio-image {
             grid-column: 7 / -1;
             grid-row: 1;
-            aspect-ratio: 4/5;
+            aspect-ratio: 16/9;
             overflow: hidden;
         }
 
@@ -281,6 +289,7 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
+            vertical-align: bottom;
         }
         
         /* --- Projects Sections --- */
@@ -318,11 +327,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transform: translateY(0); /* Reset any transform applied by removed parallax */
         }
         
         .project-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .project-item-large {
@@ -370,6 +380,7 @@
         /* --- Quote Section --- */
         .quote-section {
             background-color: var(--warm-brown);
+            /* QUOTE BACKGROUND IMAGE: Full-width background image for quote section with overlay */
             background-image: url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
@@ -408,15 +419,36 @@
             font-size: clamp(1.5rem, 3vw, 2rem);
             line-height: 1.3;
             font-weight: 400;
-            margin-bottom: calc(var(--spacing-unit) * 1);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
             color: #fff;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
         }
-
+        
+        .quote-text.active {
+            animation: fadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+        
         .quote-author {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            font-weight: 500;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        
+        .quote-author.active {
+            animation: fadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 0.3s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* --- Projects Layout 2 --- */
@@ -610,9 +642,9 @@
         /* --- Animation Classes --- */
         .fade-in {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity var(--animation-duration) var(--animation-timing),
-                        transform var(--animation-duration) var(--animation-timing);
+            transform: translateY(15px);
+            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+                        transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         
         .fade-in.active {
@@ -622,9 +654,9 @@
         
         .slide-in-left {
             opacity: 0;
-            transform: translateX(-30px);
-            transition: opacity var(--animation-duration) var(--animation-timing),
-                        transform var(--animation-duration) var(--animation-timing);
+            transform: translateX(-20px);
+            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+                        transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         
         .slide-in-left.active {
@@ -634,9 +666,9 @@
         
         .slide-in-right {
             opacity: 0;
-            transform: translateX(30px);
-            transition: opacity var(--animation-duration) var(--animation-timing),
-                        transform var(--animation-duration) var(--animation-timing);
+            transform: translateX(20px);
+            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+                        transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         
         .slide-in-right.active {
@@ -714,11 +746,12 @@
         <div class="header-content">
             <h1 class="header-title"><span class="text-reveal">IMASHA</span><br><span class="text-reveal" style="animation-delay: 0.2s;">RANDULA</span></h1>
             <p class="header-subtitle fade-in delay-300"><span class="star">✶</span> Data Science & Analytics</p>
-            <p class="header-portfolio fade-in delay-400">Portfolio of Machine Learning & Data Visualization</p>
+            <p class="header-portfolio fade-in delay-400">Specializing in Advanced Analytics & Predictive Modeling</p>
             <a href="#contact" class="btn fade-in delay-500">GET IN TOUCH</a>
         </div>
         <div class="header-image">
-            <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Professional portrait">
+            <!-- HEADER IMAGE: Main hero/header portrait - full height image (aspect ratio: landscape/square works best) -->
+            <a href="https://ibb.co/7x72jjgY"><img src="https://i.ibb.co/wZDMBBJ0/image.jpg" alt="image" border="0"></a>
         </div>
     </header>
     
@@ -735,7 +768,8 @@
                 <span class="star slide-in-left delay-300">✶</span>
             </div>
             <div class="bio-image">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Professional portrait">
+                <!-- BIO IMAGE: Secondary portrait for bio/about section (aspect ratio: landscape/square works best) -->
+                <a href="https://ibb.co/CKBxwjHt"><img src="https://i.ibb.co/TMczwQgT/PXL-20250120-042907330-MP-1-4-1.jpg" alt="PXL-20250120-042907330-MP-1-4-1" border="0"></a>
             </div>
         </section>
 
@@ -744,16 +778,19 @@
                 <div class="project-item project-item-large fade-in">
                     <div class="number-label">01</div>
                     <div class="tech-tag">Python | TensorFlow | Scikit-learn</div>
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Customer Churn Prediction Project">
+                    <!-- PROJECT IMAGE 01: Large portrait image for "Customer Churn Prediction" (aspect ratio: 2:3, portrait) -->
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Customer Churn Prediction Project">
                 </div>
                 <div class="project-item project-item-small-1 fade-in delay-200">
                     <div class="number-label">02</div>
                     <div class="tech-tag">NLTK | Tableau | Flask</div>
+                    <!-- PROJECT IMAGE 02: Small landscape image for "Sentiment Analysis Dashboard" (aspect ratio: 3:2, landscape) -->
                     <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Sentiment Analysis Dashboard">
                 </div>
                 <div class="project-item project-item-small-2 fade-in delay-300">
                     <div class="number-label">03</div>
                     <div class="tech-tag">R | Prophet | Pandas</div>
+                    <!-- PROJECT IMAGE 03: Small landscape image for "Time Series Forecasting" (aspect ratio: 3:2, landscape) -->
                     <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Time Series Forecasting">
                 </div>
                 <div class="featured-work-header slide-in-right">
@@ -769,8 +806,8 @@
 
         <section class="quote-section">
             <div class="quote-content">
-                <p class="quote-text">"Imasha demonstrates exceptional analytical abilities and a talent for extracting meaningful insights from complex datasets."</p>
-                <p class="quote-author">Dr. Ranjith Perera, Data Science Professor at SLIIT</p>
+                <p class="quote-text fade-in">"My journey into data science began with a simple question: 'What if we could predict what happens next?' This question has led me through algorithms and datasets, always searching for that perfect insight that changes everything."</p>
+                <p class="quote-author fade-in delay-200">Turning data into vision, vision into action</p>
             </div>
         </section>
 
@@ -788,24 +825,28 @@
                 <div class="project-item project-item-small-1">
                     <div class="number-label">04</div>
                     <div class="tech-tag">Python | Scikit-learn | Jupyter</div>
-                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Predictive Analytics Research">
+                    <!-- RESEARCH IMAGE 04: Small landscape image for "Predictive Analytics Research" (aspect ratio: 3:2, landscape) -->
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Predictive Analytics Research">
                 </div>
                 <div class="project-item project-item-small-2">
                     <div class="number-label">05</div>
                     <div class="tech-tag">BERT | Transformers | PyTorch</div>
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="NLP Study">
+                    <!-- RESEARCH IMAGE 05: Small landscape image for "Natural Language Processing Study" (aspect ratio: 3:2, landscape) -->
+                    <img src="https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="NLP Study">
                 </div>
                 <div class="project-item project-item-large">
                     <div class="number-label">06</div>
                     <div class="tech-tag">OpenCV | TensorFlow | CNNs</div>
-                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Computer Vision Application">
+                    <!-- RESEARCH IMAGE 06: Large portrait image for "Computer Vision Application" (aspect ratio: 2:3, portrait) -->
+                    <img src="https://images.unsplash.com/photo-1580894732930-0babd100d356?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Computer Vision Application">
                 </div>
             </div>
         </section>
 
         <section id="contact" class="contact-section">
             <div class="contact-image">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Contact image">
+                <!-- CONTACT IMAGE: Large image for contact section (height: 80vh) - shows workspace/data analysis environment -->
+                <img src="https://i.ibb.co/G4W8598H/pexels-marcus-aurelius-9789456.jpg" alt="Contact image">
             </div>
             <div class="contact-content">
                 <h2 class="contact-title slide-in-right">Get in</h2>
@@ -843,6 +884,13 @@
                         if (entry.target.classList.contains('slide-in-left') || 
                             entry.target.classList.contains('slide-in-right')) {
                             entry.target.classList.add('active');
+                        }
+                        
+                        // Special case for quote section
+                        if (entry.target.classList.contains('quote-section')) {
+                            entry.target.querySelectorAll('.quote-text, .quote-author').forEach(el => {
+                                el.classList.add('active');
+                            });
                         }
                         
                         // Handle elements with children that need animation
@@ -883,18 +931,7 @@
                 });
             });
             
-            // Add parallax effect to images
-            const handleParallax = () => {
-                const scrollPosition = window.pageYOffset;
-                
-                document.querySelectorAll('.project-item img').forEach(image => {
-                    const speed = 0.05;
-                    const yPos = -(scrollPosition * speed);
-                    image.style.transform = `translateY(${yPos}px)`;
-                });
-            };
-            
-            window.addEventListener('scroll', handleParallax);
+            // Parallax effect removed
         });
     </script>
 </body>
