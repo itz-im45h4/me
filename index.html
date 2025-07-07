@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMASHA RANDULA - Data Science Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables --- */
+        :root {
+            --bg-color: #f8f5f0;
+            --text-color: #3a3532;
+            --heading-color: #1e1b19;
+            --accent-color: #c9a980;
+            --accent-light: #e9e4db;
+            --gold-accent: #b39868;
+            --warm-brown: #8c7365;
+            --neutral-light: #f0ece6;
+            --font-primary: 'Inter', sans-serif;
+            --spacing-unit: clamp(0.5rem, 1vw, 1rem);
+            --animation-duration: 0.8s;
+            --animation-timing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            vertical-align: bottom;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-primary);
+            font-weight: 600;
+            color: var(--heading-color);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(3.5rem, 8vw, 5rem);
+            letter-spacing: -0.02em;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            line-height: 0.9;
+            text-transform: none;
+            font-weight: 600;
+            color: var(--heading-color);
+            position: relative;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--gold-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: lineReveal 1.2s var(--animation-timing) forwards;
+            animation-delay: 1s;
+        }
+        
+        @keyframes lineReveal {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            font-weight: 500;
+        }
+
+        p {
+            margin-bottom: var(--spacing-unit);
+            font-weight: 300;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: calc(var(--spacing-unit) * 6) 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: calc(var(--spacing-unit) * 2);
+        }
+
+        .btn {
+            display: inline-block;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            padding: 0.8em 2em;
+            text-decoration: none;
+            font-weight: 400;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+        
+        .star {
+            display: inline-block;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        .number-label {
+            font-size: 1.5rem;
+            font-weight: 500;
+            opacity: 0.9;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 2;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .project-item:hover .number-label {
+            transform: scale(1.2);
+            color: var(--accent-color);
+        }
+        
+        /* Add tech tag labels */
+        .tech-tag {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            border-radius: 2px;
+            z-index: 2;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .project-item:hover .tech-tag {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header Section --- */
+        .header {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header-content {
+            grid-column: 1 / 7;
+            grid-row: 1;
+            padding: 20% 5% 0 5%;
+        }
+
+        .header-image {
+            grid-column: 7 / -1;
+            grid-row: 1;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .header-title {
+            font-size: clamp(3.5rem, 8vw, 5rem);
+            text-transform: none;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            color: var(--heading-color);
+            position: relative;
+        }
+        
+        .header-title span {
+            display: inline-block;
+            background: linear-gradient(to right, var(--heading-color), var(--gold-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        .header-portfolio {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+
+        /* --- Bio Section --- */
+        .bio-section {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 0;
+            padding: 5% 5%;
+            margin: 0;
+        }
+
+        .bio-content {
+            grid-column: 1 / 6;
+            grid-row: 1;
+        }
+
+        .bio-text {
+            margin-top: calc(var(--spacing-unit) * 2);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            max-width: 90%;
+        }
+
+        .bio-image {
+            grid-column: 7 / -1;
+            grid-row: 1;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+        }
+
+        .bio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        /* --- Projects Sections --- */
+        .projects-section {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .project-layout-1 {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto auto;
+            gap: 24px;
+            grid-column: 1 / -1;
+            padding: 0 5%;
+            margin: 0;
+        }
+
+        .project-item {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.4s ease;
+        }
+        
+        .project-item:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-item-large {
+            grid-column: 1 / 6;
+            grid-row: 1 / 3;
+            aspect-ratio: 2/3;
+        }
+
+        .project-item-small-1 {
+            grid-column: 6 / 10;
+            grid-row: 1 / 2;
+            aspect-ratio: 3/2;
+        }
+
+        .project-item-small-2 {
+            grid-column: 6 / 10;
+            grid-row: 2 / 3;
+            aspect-ratio: 3/2;
+        }
+
+        .featured-work-header {
+            grid-column: 10 / -1;
+            grid-row: 1 / 3;
+            padding: 2rem 0 0 2rem;
+            align-self: start;
+        }
+
+        .featured-work-title {
+            font-size: 1.7rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+
+        .project-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-list li {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* --- Quote Section --- */
+        .quote-section {
+            background-color: var(--warm-brown);
+            background-image: url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            width: 100%;
+            position: relative;
+            height: 80vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(179, 152, 104, 0.7), rgba(140, 115, 101, 0.5));
+            z-index: 0;
+        }
+
+        .quote-content {
+            max-width: 500px;
+            margin-left: 5%;
+            position: relative;
+            z-index: 2;
+            padding: 2rem 0;
+        }
+
+        .quote-text {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.3;
+            font-weight: 400;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- Projects Layout 2 --- */
+        .project-layout-2 {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto auto;
+            gap: 24px;
+            grid-column: 1 / -1;
+            padding: 0 5%;
+            margin: 0;
+        }
+
+        .project-layout-2 .featured-work-header {
+            grid-column: 1 / 4;
+            grid-row: 1 / 3;
+            padding: 2rem 0 0 0;
+            align-self: start;
+        }
+
+        .project-layout-2 .project-item-small-1 {
+            grid-column: 4 / 8;
+            grid-row: 1 / 2;
+            aspect-ratio: 3/2;
+        }
+
+        .project-layout-2 .project-item-small-2 {
+            grid-column: 4 / 8;
+            grid-row: 2 / 3;
+            aspect-ratio: 3/2;
+        }
+
+        .project-layout-2 .project-item-large {
+            grid-column: 8 / -1;
+            grid-row: 1 / 3;
+            aspect-ratio: 2/3;
+        }
+
+        /* --- Contact Section --- */
+        .contact-section {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .contact-section::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            border-top: 2px solid var(--gold-accent);
+            border-left: 2px solid var(--gold-accent);
+            z-index: 5;
+        }
+
+        .contact-image {
+            grid-column: 1 / 9;
+            height: 80vh;
+            min-height: 500px;
+            background-color: var(--accent-light);
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-content {
+            grid-column: 9 / -1;
+            background-color: #fff;
+            padding: 20% 15%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0;
+            line-height: 1;
+            color: var(--gold-accent);
+        }
+        
+        .contact-title-bold {
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            line-height: 1;
+            position: relative;
+        }
+        
+        .contact-title-bold::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--gold-accent);
+        }
+
+        .contact-info {
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .contact-info p {
+            margin-bottom: calc(var(--spacing-unit));
+            font-size: 0.9rem;
+        }
+
+        /* --- Media Queries --- */
+        @media (max-width: 992px) {
+            .header-content, 
+            .header-image,
+            .bio-content, 
+            .bio-image,
+            .contact-image, 
+            .contact-content {
+                grid-column: 1 / -1;
+                grid-row: auto;
+            }
+            
+            .header {
+                grid-template-rows: auto auto;
+            }
+            
+            .header-image {
+                height: 50vh;
+            }
+            
+            .bio-section,
+            .projects-section {
+                padding: calc(var(--spacing-unit) * 5) 5%;
+            }
+            
+            .bio-content {
+                margin-bottom: calc(var(--spacing-unit) * 4);
+            }
+            
+            .project-item-large,
+            .project-item-small-1,
+            .project-item-small-2,
+            .featured-work-header,
+            .project-layout-2 .project-item-large,
+            .project-layout-2 .project-item-small-1,
+            .project-layout-2 .project-item-small-2,
+            .project-layout-2 .featured-work-header {
+                grid-column: 1 / -1;
+                grid-row: auto;
+                margin-bottom: calc(var(--spacing-unit) * 2);
+            }
+            
+            .featured-work-header {
+                padding-top: 0;
+                margin-bottom: calc(var(--spacing-unit) * 4);
+            }
+            
+            .project-layout-2 .featured-work-header {
+                margin-left: 0;
+            }
+            
+            .contact-content {
+                grid-column: 1 / -1;
+                width: 100%;
+                padding: 2rem;
+            }
+            
+            .contact-image {
+                grid-column: 1 / -1;
+            }
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main > section {
+            margin: 0;
+        }
+        
+
+        
+        /* --- Animation Classes --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity var(--animation-duration) var(--animation-timing),
+                        transform var(--animation-duration) var(--animation-timing);
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity var(--animation-duration) var(--animation-timing),
+                        transform var(--animation-duration) var(--animation-timing);
+        }
+        
+        .slide-in-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity var(--animation-duration) var(--animation-timing),
+                        transform var(--animation-duration) var(--animation-timing);
+        }
+        
+        .slide-in-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes textReveal {
+            from {
+                clip-path: inset(0 100% 0 0);
+            }
+            to {
+                clip-path: inset(0 0 0 0);
+            }
+        }
+        
+        /* Text animation for headers */
+        .text-reveal {
+            display: inline-block;
+            animation: textReveal 1s var(--animation-timing) forwards;
+            clip-path: inset(0 100% 0 0);
+        }
+        
+        /* Button hover animation */
+        .btn {
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease, border-color 0.3s ease;
+            z-index: 1;
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn:hover::before {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="header-title"><span class="text-reveal">IMASHA</span><br><span class="text-reveal" style="animation-delay: 0.2s;">RANDULA</span></h1>
+            <p class="header-subtitle fade-in delay-300"><span class="star">✶</span> Data Science & Analytics</p>
+            <p class="header-portfolio fade-in delay-400">Portfolio of Machine Learning & Data Visualization</p>
+            <a href="#contact" class="btn fade-in delay-500">GET IN TOUCH</a>
+        </div>
+        <div class="header-image">
+            <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Professional portrait">
+        </div>
+    </header>
+    
+
+
+    <main>
+        <section class="bio-section">
+            <div class="bio-content">
+                <h2 class="slide-in-left">My<br>Biography</h2>
+                <div class="bio-text slide-in-left delay-200">
+                    <p>As a dedicated data science student at Sri Lanka Institute of Information Technology (SLIIT), I specialize in transforming complex data into meaningful insights. My technical expertise includes Python, R, SQL, machine learning algorithms, and data visualization tools like Tableau and Power BI. I'm passionate about predictive modeling, statistical analysis, and developing AI solutions that solve real-world problems.</p>
+                    <p>My academic journey has equipped me with strong foundations in mathematics, statistics, and programming, complemented by hands-on experience in data preprocessing, feature engineering, and model deployment. I continuously seek opportunities to apply my analytical skills to impactful projects while staying current with emerging technologies in this rapidly evolving field.</p>
+                </div>
+                <span class="star slide-in-left delay-300">✶</span>
+            </div>
+            <div class="bio-image">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Professional portrait">
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section">
+            <div class="project-layout-1">
+                <div class="project-item project-item-large fade-in">
+                    <div class="number-label">01</div>
+                    <div class="tech-tag">Python | TensorFlow | Scikit-learn</div>
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Customer Churn Prediction Project">
+                </div>
+                <div class="project-item project-item-small-1 fade-in delay-200">
+                    <div class="number-label">02</div>
+                    <div class="tech-tag">NLTK | Tableau | Flask</div>
+                    <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Sentiment Analysis Dashboard">
+                </div>
+                <div class="project-item project-item-small-2 fade-in delay-300">
+                    <div class="number-label">03</div>
+                    <div class="tech-tag">R | Prophet | Pandas</div>
+                    <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Time Series Forecasting">
+                </div>
+                <div class="featured-work-header slide-in-right">
+                    <h2 class="featured-work-title">Data Science<br>Projects</h2>
+                    <ul class="project-list">
+                        <li class="fade-in delay-100">01 Customer Churn Prediction, 2023</li>
+                        <li class="fade-in delay-200">02 Sentiment Analysis Dashboard, 2023</li>
+                        <li class="fade-in delay-300">03 Time Series Forecasting, 2024</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <div class="quote-content">
+                <p class="quote-text">"Imasha demonstrates exceptional analytical abilities and a talent for extracting meaningful insights from complex datasets."</p>
+                <p class="quote-author">Dr. Ranjith Perera, Data Science Professor at SLIIT</p>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <div class="project-layout-2">
+                <div class="featured-work-header">
+                    <h2 class="featured-work-title">Research &<br>Publications</h2>
+                    <ul class="project-list">
+                        <li>04 Predictive Analytics Research, 2023</li>
+                        <li>05 Natural Language Processing Study, 2023</li>
+                        <li>06 Computer Vision Application, 2024</li>
+                    </ul>
+                    <span class="star">✶</span>
+                </div>
+                <div class="project-item project-item-small-1">
+                    <div class="number-label">04</div>
+                    <div class="tech-tag">Python | Scikit-learn | Jupyter</div>
+                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Predictive Analytics Research">
+                </div>
+                <div class="project-item project-item-small-2">
+                    <div class="number-label">05</div>
+                    <div class="tech-tag">BERT | Transformers | PyTorch</div>
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="NLP Study">
+                </div>
+                <div class="project-item project-item-large">
+                    <div class="number-label">06</div>
+                    <div class="tech-tag">OpenCV | TensorFlow | CNNs</div>
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Computer Vision Application">
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="contact-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Contact image">
+            </div>
+            <div class="contact-content">
+                <h2 class="contact-title slide-in-right">Get in</h2>
+                <h2 class="contact-title-bold slide-in-right delay-100">Touch</h2>
+                <div class="contact-info slide-in-right delay-200">
+                    <p>Malabe Campus, New Kandy Road, Malabe</p>
+                    <p>imasha.r@sliit.lk</p>
+                    <p>+94 71 234 5678</p>
+                    <p>github.com/imasha-randula</p>
+                    <p>linkedin.com/in/imasha-randula</p>
+                </div>
+                <a href="mailto:imasha.r@sliit.lk" class="btn slide-in-right delay-300">SEND AN EMAIL</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Initialize Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial active classes for elements already in view
+            document.querySelectorAll('.header-title .text-reveal').forEach(el => {
+                el.style.opacity = '1';
+            });
+            
+            // Initialize intersection observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add active class to fade-in elements
+                        if (entry.target.classList.contains('fade-in')) {
+                            entry.target.classList.add('active');
+                        }
+                        
+                        // Add active class to slide-in elements
+                        if (entry.target.classList.contains('slide-in-left') || 
+                            entry.target.classList.contains('slide-in-right')) {
+                            entry.target.classList.add('active');
+                        }
+                        
+                        // Handle elements with children that need animation
+                        if (entry.target.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').length > 0) {
+                            entry.target.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                                el.classList.add('active');
+                            });
+                        }
+                        
+                        // Stop observing after animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1, // Trigger when at least 10% of the element is visible
+                rootMargin: '0px 0px -100px 0px' // Trigger slightly before the element enters the viewport
+            });
+            
+            // Observe all elements with animation classes
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .bio-section, .project-layout-1, .project-layout-2, .quote-section, .contact-section').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add parallax effect to images
+            const handleParallax = () => {
+                const scrollPosition = window.pageYOffset;
+                
+                document.querySelectorAll('.project-item img').forEach(image => {
+                    const speed = 0.05;
+                    const yPos = -(scrollPosition * speed);
+                    image.style.transform = `translateY(${yPos}px)`;
+                });
+            };
+            
+            window.addEventListener('scroll', handleParallax);
+        });
+    </script>
+</body>
+</html>
