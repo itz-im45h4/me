@@ -1,0 +1,2470 @@
+<!-- 
+================================================================================
+                    IMASHA RANDULA - DATA SCIENCE PORTFOLIO
+                     Advanced Analytics & Predictive Modeling
+================================================================================
+INSTRUCTIONS: Edit the <title> tag and Meta tags to customize this page.
+              - Change the title for browser tabs and search engines
+              - Update meta description for SEO if needed
+              - The font (Inter) is loaded from Google Fonts
+================================================================================ 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- CHARACTER ENCODING & VIEWPORT FOR RESPONSIVENESS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/rfXsd7L9/my-name-is.png">
+
+    <!-- PAGE TITLE (appears in browser tab and search results) -->
+    <!-- EDIT THIS: Change the title to your name or portfolio title -->
+    <title>Imasha =) </title>
+
+    <!-- GOOGLE FONTS PRECONNECTION (faster font loading) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- INTER FONT FAMILY (main font for entire website) -->
+    <!-- EDIT THIS: Change font weights (300-700) or replace with different font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===================================================================
+           CSS VARIABLES - Change these colors to customize the entire website
+           ===================================================================
+           INSTRUCTIONS: 
+           - --bg-color: Main background (light beige/cream)
+           - --accent-color: Highlight color (gold/brown) - appears in buttons, links
+           - --text-color: Body text color (dark brown)
+           - --heading-color: Heading text color (darker)
+           
+           Change these hex colors to match your brand:
+           - Easy color tools: colorpicker.com or colordot.it
+           =================================================================== */
+        :root {
+            --bg-color: #f8f5f0;
+            /* Main background - light beige */
+            --text-color: #3a3532;
+            /* Body text - dark brown */
+            --heading-color: #1e1b19;
+            /* Headers - very dark */
+            --accent-color: #c9a980;
+            /* Primary highlight - warm gold/brown */
+            --accent-light: #e9e4db;
+            /* Light accent - cream */
+            --gold-accent: #b39868;
+            /* Darker gold for accents */
+            --warm-brown: #8c7365;
+            /* Warm brown for sections */
+            --neutral-light: #f0ece6;
+            /* Light neutral for backgrounds */
+            --font-primary: 'Inter', sans-serif;
+            /* Main font family */
+            --spacing-unit: clamp(0.5rem, 1vw, 1rem);
+            /* Responsive spacing */
+            --animation-duration: 0.8s;
+            /* Animation speed */
+            --animation-timing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Animation easing */
+        }
+
+        /* GLOBAL RESET - Remove default margins/padding from all elements */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* SMOOTH SCROLLING - Makes anchor links scroll smoothly */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* BODY STYLES - Main text styling applied to entire page */
+        /* EDIT THIS: Change font-family, colors, or line-height here */
+        body {
+            font-family: var(--font-primary);
+            /* Uses Inter font from Google Fonts */
+            background-color: var(--bg-color);
+            /* Light beige background */
+            color: var(--text-color);
+            /* Dark brown text */
+            line-height: 1.6;
+            /* Space between text lines */
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
+            font-weight: 300;
+            /* Light font weight */
+            letter-spacing: 0.02em;
+            /* Space between letters */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* IMAGE STYLING - Makes images responsive and handles object-fit */
+        img {
+            max-width: 100%;
+            /* Never wider than container */
+            height: auto;
+            /* Maintain aspect ratio */
+            display: block;
+            /* Remove inline spacing */
+            object-fit: cover;
+            /* Crop image to fill container */
+            vertical-align: bottom;
+            /* Remove bottom gap */
+        }
+
+        /* HEADING STYLES - Applies to h1, h2, h3 tags */
+        /* EDIT THIS: Change font-weight, letter-spacing, or colors */
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-primary);
+            /* Same font as body */
+            font-weight: 600;
+            /* Semi-bold */
+            color: var(--heading-color);
+            /* Dark color */
+            letter-spacing: -0.02em;
+            /* Tighter letter spacing */
+            line-height: 1.2;
+            /* Compact line height */
+        }
+
+        /* H1 HEADING STYLES - Largest heading used for main titles */
+        /* EDIT THIS: Change font-size, color, or remove the underline (::after) */
+        h1 {
+            font-size: clamp(3.5rem, 8vw, 5rem);
+            /* Responsive: 3.5rem to 5rem */
+            letter-spacing: -0.02em;
+            /* Tight letter spacing */
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            /* Space below heading */
+            line-height: 0.9;
+            /* Very compact line height */
+            text-transform: none;
+            /* Don't uppercase text */
+            font-weight: 600;
+            /* Semi-bold weight */
+            color: var(--heading-color);
+            /* Dark color */
+            position: relative;
+            /* Position for ::after decoration */
+        }
+
+        /* H1 UNDERLINE DECORATION - Gold line that appears under h1 headings */
+        /* EDIT THIS: Change background-color to different color, or set to 'display: none' to remove */
+        h1::after {
+            content: "";
+            /* Create decorative line */
+            position: absolute;
+            /* Position relative to h1 */
+            bottom: -15px;
+            /* 15px below text */
+            left: 0;
+            /* Align to left */
+            width: 60px;
+            /* Line width */
+            height: 2px;
+            /* Line thickness */
+            background-color: var(--gold-accent);
+            /* Use gold accent color */
+            transform: scaleX(0);
+            /* Start invisible */
+            transform-origin: left;
+            /* Scale from left */
+            animation: lineReveal 1.2s var(--animation-timing) forwards;
+            /* Animate */
+            animation-delay: 1s;
+            /* Delay animation */
+        }
+
+        /* ANIMATION: Line Reveal - Creates expanding line effect */
+        /* This makes the underline "grow" from left to right when page loads */
+        @keyframes lineReveal {
+            to {
+                transform: scaleX(1);
+                /* Expand to full width */
+            }
+        }
+
+        /* H2 HEADING STYLES - Secondary headings throughout the page */
+        /* EDIT THIS: Change size, weight, or colors */
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            /* Responsive sizing */
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            /* Space below */
+            font-weight: 500;
+            /* Medium weight */
+        }
+
+        /* PARAGRAPH STYLES - Default text styling */
+        p {
+            margin-bottom: var(--spacing-unit);
+            /* Space below each paragraph */
+            font-weight: 300;
+            /* Light weight for readability */
+        }
+
+        /* CONTAINER - Centers content and adds max-width */
+        /* EDIT THIS: Change max-width to make content wider or narrower */
+        .container {
+            width: 95%;
+            /* Use 95% of viewport width */
+            max-width: 1400px;
+            /* Max width (don't get wider) */
+            margin: 0 auto;
+            /* Center horizontally */
+        }
+
+        /* SECTION - Vertical padding for spacing between sections */
+        /* EDIT THIS: Change padding value to add/remove vertical space */
+        .section {
+            padding: calc(var(--spacing-unit) * 6) 0;
+            /* Top and bottom padding */
+        }
+
+        /* GRID LAYOUT - 12-column responsive grid system */
+        /* EDIT THIS: Change gap value to increase/decrease spacing between grid items */
+        .grid {
+            display: grid;
+            /* Use CSS Grid */
+            grid-template-columns: repeat(12, 1fr);
+            /* 12 equal columns */
+            gap: calc(var(--spacing-unit) * 2);
+            /* Space between items */
+        }
+
+        /* BUTTON STYLES - All buttons use this styling */
+        /* EDIT THIS: Change colors, padding, or border-radius to customize buttons */
+        /* NOTE: This button has animated background fill effect on hover */
+        .btn {
+            display: inline-block;
+            /* Allow padding around text */
+            border: 1px solid var(--text-color);
+            /* Dark border */
+            color: var(--text-color);
+            /* Dark text */
+            padding: 0.8em 2em;
+            /* Top/bottom and left/right padding */
+            text-decoration: none;
+            /* Remove underline from links */
+            font-weight: 400;
+            /* Normal weight */
+            text-transform: uppercase;
+            /* Make text all caps */
+            font-size: 0.8rem;
+            /* Small text size */
+            letter-spacing: 0.1em;
+            /* Wide letter spacing */
+            background: transparent;
+            /* Transparent background */
+            cursor: pointer;
+            /* Pointer cursor on hover */
+            transition: all 0.3s ease;
+            /* Smooth animation on interaction */
+            position: relative;
+            /* Position for animated background */
+            overflow: hidden;
+            /* Hide overflow for animation */
+            z-index: 1;
+            /* Layer ordering */
+            border-color: var(--accent-color);
+            /* Use accent gold color */
+            color: var(--accent-color);
+            /* Text color is gold */
+        }
+
+        /* BUTTON BACKGROUND ANIMATION - Fills background on hover */
+        /* EDIT THIS: Change width animation or background-color */
+        .btn::before {
+            content: '';
+            /* Create background element */
+            position: absolute;
+            /* Position behind text */
+            top: 0;
+            /* Start at top */
+            left: 0;
+            /* Start at left */
+            width: 0;
+            /* Start invisible */
+            height: 100%;
+            /* Full height */
+            background-color: var(--accent-color);
+            /* Fill with accent color */
+            transition: width 0.3s ease;
+            /* Animate width change */
+            z-index: -1;
+            /* Behind text */
+        }
+
+        /* BUTTON HOVER STATE - What happens when you hover over a button */
+        /* EDIT THIS: Change colors or transform for different effect */
+        .btn:hover {
+            color: var(--bg-color);
+            /* Light text on gold */
+            border-color: var(--accent-color);
+            /* Keep gold border */
+        }
+
+        /* BUTTON BACKGROUND HOVER - Expands the background fill */
+        .btn:hover::before {
+            width: 100%;
+            /* Fill entire button */
+        }
+
+        /* STAR DECORATION - Decorative star symbols (✶) used throughout */
+        /* EDIT THIS: Change color or font-size, or remove element from HTML */
+        .star {
+            display: inline-block;
+            /* Display as block */
+            color: var(--accent-color);
+            /* Gold color */
+            font-size: 1.2rem;
+            /* Star size */
+            margin-right: 0.5rem;
+            /* Space after star */
+        }
+
+        /* PROJECT NUMBER LABEL - Small text showing project number (01, 02, 03, etc) */
+        /* EDIT THIS: Change position, font-size, or remove this from project items */
+        .number-label {
+            font-size: 1.5rem;
+            /* Size of number */
+            font-weight: 500;
+            /* Medium weight */
+            opacity: 0.9;
+            /* Slightly transparent */
+            position: absolute;
+            /* Position in corner */
+            top: 1rem;
+            /* 1rem from top */
+            left: 1rem;
+            /* 1rem from left */
+            z-index: 2;
+            /* Show above other content */
+            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), color 0.3s ease;
+        }
+
+        /* NUMBER LABEL HOVER - Animation when hovering over project */
+        .project-item:hover .number-label {
+            transform: scale(1.1);
+            /* Grow slightly */
+            color: var(--accent-color);
+            /* Change to gold */
+        }
+
+        /* TECH TAG - Small label showing technology used (e.g., "Python | TensorFlow") */
+        /* EDIT THIS: Change positioning, background color, or font-size */
+        .tech-tag {
+            position: absolute;
+            /* Position in bottom-left */
+            bottom: 1rem;
+            /* 1rem from bottom */
+            left: 1rem;
+            /* 1rem from left */
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Dark semi-transparent background */
+            color: white;
+            /* White text */
+            padding: 0.3rem 0.8rem;
+            /* Small padding */
+            font-size: 0.8rem;
+            /* Small text */
+            border-radius: 2px;
+            /* Slight corner rounding */
+            z-index: 2;
+            /* Show above image */
+            font-weight: 400;
+            /* Normal weight */
+            letter-spacing: 0.05em;
+            /* Wide letter spacing */
+            opacity: 0;
+            /* Start invisible */
+            transform: translateY(5px);
+            /* Start slightly lower */
+            transition: opacity 0.25s ease-in-out, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        /* TECH TAG HOVER - Appears when hovering over project */
+        .project-item:hover .tech-tag {
+            opacity: 1;
+            /* Become visible */
+            transform: translateY(0);
+            /* Move to final position */
+        }
+
+        /* ===================================================================
+           HEADER SECTION - The main hero/landing section at top of page
+           The header uses a 12-column grid split between text (left) and image (right)
+           =================================================================== */
+
+        /* HEADER MAIN CONTAINER */
+        /* EDIT THIS: Change background color to customize look */
+        .header {
+            min-height: 100vh;
+            /* Full viewport height */
+            display: grid;
+            /* Use grid layout */
+            grid-template-columns: repeat(12, 1fr);
+            /* 12 columns */
+            gap: 0;
+            /* No gap between items */
+            padding: 0;
+            /* No padding */
+            margin: 0;
+            /* No margin */
+        }
+
+        /* HEADER CONTENT - Left side text area (columns 1-6 of 12) */
+        /* EDIT THIS: Change grid-column to adjust width of text area */
+        .header-content {
+            grid-column: 1 / 7;
+            /* Columns 1-6 (left half) */
+            grid-row: 1;
+            /* First row */
+            padding: 20% 5% 0 5%;
+            /* Padding: top 20%, sides 5% */
+        }
+
+        /* HEADER IMAGE - Right side image area (columns 7-12 of 12) */
+        /* EDIT THIS: Change grid-column to adjust image width, or change height */
+        .header-image {
+            grid-column: 7 / -1;
+            /* Columns 7-12 (right half) */
+            grid-row: 1;
+            /* First row */
+            height: 100vh;
+            /* Full viewport height */
+            overflow: hidden;
+            /* Crop image */
+        }
+
+        /* HEADER IMAGE TAG - The actual image element */
+        /* EDIT THIS: Change object-position to crop different part of image */
+        .header-image img {
+            width: 100%;
+            /* Fill container width */
+            height: 100%;
+            /* Fill container height */
+            object-fit: cover;
+            /* Crop to fill (don't stretch) */
+            object-position: center;
+            /* Crop from center of image */
+        }
+
+        /* HEADER TITLE - Main heading in header */
+        /* EDIT THIS: Change font-size, colors, or text-transform */
+        .header-title {
+            font-size: clamp(3.5rem, 8vw, 5rem);
+            /* Responsive: 3.5rem to 5rem */
+            text-transform: none;
+            /* Don't change case */
+            line-height: 0.9;
+            /* Very tight line spacing */
+            letter-spacing: -0.02em;
+            /* Tight letter spacing */
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            /* Space below */
+            color: var(--heading-color);
+            /* Dark color */
+            position: relative;
+            /* Enable z-index */
+        }
+
+        /* HEADER TITLE ACCENT - Colored text within title (uses <span> tags) */
+        /* EDIT THIS: Change colors or gradient direction */
+        .header-title span {
+            display: inline-block;
+            /* Display as block for effects */
+            background: linear-gradient(to right, var(--heading-color), var(--gold-accent));
+            /* Color gradient */
+            -webkit-background-clip: text;
+            /* Clip background to text */
+            -webkit-text-fill-color: transparent;
+            /* Make text transparent so gradient shows */
+            background-clip: text;
+            /* Standard property for clipping */
+        }
+
+        /* HEADER SUBTITLE - Small text above main title (e.g., "Data Science & Analytics") */
+        /* EDIT THIS: Change font-size or remove the flex display */
+        .header-subtitle {
+            font-size: 1.1rem;
+            /* Text size */
+            font-weight: 400;
+            /* Normal weight */
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            /* Space below */
+            display: flex;
+            /* Display inline with star icon */
+            align-items: center;
+            /* Vertically center with star */
+        }
+
+        /* HEADER PORTFOLIO TEXT - Portfolio description text */
+        /* EDIT THIS: Change font-size or color */
+        .header-portfolio {
+            font-size: 1.5rem;
+            /* Larger text */
+            font-weight: 500;
+            /* Medium weight */
+            margin-bottom: calc(var(--spacing-unit) * 6);
+            /* Large space below (before button) */
+        }
+
+        /* ===================================================================
+           BIO SECTION - About/Biography section with text and image side-by-side
+           =================================================================== */
+
+        /* BIO SECTION CONTAINER - Grid layout for bio text and image */
+        /* EDIT THIS: Change grid-template-columns to adjust text/image split */
+        .bio-section {
+            display: grid;
+            /* Use grid layout */
+            grid-template-columns: repeat(12, 1fr);
+            /* 12 columns */
+            gap: 0;
+            /* No gap between columns */
+            padding: 5% 5%;
+            /* 5% padding on all sides */
+            margin: 0;
+            /* No margin */
+        }
+
+        /* BIO CONTENT - Text/heading area (left side, columns 1-6) */
+        /* EDIT THIS: Change grid-column to adjust width of text area */
+        .bio-content {
+            grid-column: 1 / 6;
+            /* Columns 1-6 (left half) */
+            grid-row: 1;
+            /* First row */
+        }
+
+        /* BIO TEXT - The actual biography paragraph text */
+        /* EDIT THIS: Change background color, padding, or border-radius */
+        .bio-text {
+            margin-top: calc(var(--spacing-unit) * 2);
+            /* Space above */
+            font-size: 0.95rem;
+            /* Slightly smaller text */
+            line-height: 1.8;
+            /* Generous line spacing for readability */
+            max-width: 90%;
+            /* Don't let text get too wide */
+        }
+
+        /* BIO IMAGE - Image area (right side, columns 7-12) */
+        /* EDIT THIS: Change grid-column to adjust image width, or aspect-ratio */
+        .bio-image {
+            grid-column: 7 / -1;
+            /* Columns 7-12 (right half) */
+            grid-row: 1;
+            /* First row */
+            aspect-ratio: 16/9;
+            /* Width/height ratio */
+            overflow: hidden;
+            /* Crop image */
+        }
+
+        /* BIO IMAGE TAG - The actual bio image element */
+        /* EDIT THIS: Change object-position to crop different part */
+        .bio-image img {
+            width: 100%;
+            /* Fill width */
+            height: 100%;
+            /* Fill height */
+            object-fit: cover;
+            /* Crop to fill */
+            object-position: center;
+            /* Crop from center */
+            vertical-align: bottom;
+            /* Remove bottom gap */
+        }
+
+        /* ===================================================================
+           PROJECTS SECTION - Showcases project portfolio with image grid
+           =================================================================== */
+
+        /* PROJECTS SECTION CONTAINER */
+        .projects-section {
+            display: grid;
+            /* Use grid layout */
+            grid-template-columns: repeat(12, 1fr);
+            /* 12 columns */
+            gap: 0;
+            /* No gap */
+            padding: 0;
+            /* No padding */
+            margin: 0;
+            /* No margin */
+        }
+
+        /* PROJECT LAYOUT 1 - First projects section (main + 2 small + text) */
+        /* EDIT THIS: Change gap value to adjust spacing between projects */
+        .project-layout-1 {
+            display: grid;
+            /* Use grid layout */
+            grid-template-columns: repeat(12, 1fr);
+            /* 12 columns */
+            grid-template-rows: auto auto;
+            /* 2 rows */
+            gap: 24px;
+            /* 24px spacing between items */
+            grid-column: 1 / -1;
+            /* Span all columns */
+            padding: 0 5%;
+            /* 5% padding sides */
+            margin: 0;
+            /* No margin */
+        }
+
+        /* PROJECT ITEM - Individual project card */
+        /* EDIT THIS: Change box-shadow or transition */
+        .project-item {
+            position: relative;
+            /* Enable positioning for overlays */
+            overflow: hidden;
+            /* Crop content to borders */
+            margin-bottom: 0;
+            /* No bottom margin */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            /* Subtle shadow */
+            transition: box-shadow 0.4s ease;
+            /* Smooth animation on hover */
+        }
+
+        /* PROJECT ITEM HOVER - Animation when hovering over project */
+        /* EDIT THIS: Change shadow for different effect */
+        .project-item:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            /* Larger shadow on hover */
+        }
+
+        /* PROJECT IMAGE - The image inside each project card */
+        /* EDIT THIS: Change transform scale or filter */
+        .project-item img {
+            width: 100%;
+            /* Fill container */
+            height: 100%;
+            /* Fill container */
+            object-fit: cover;
+            /* Crop to fill */
+            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            /* Zoom animation */
+            transform: translateY(0);
+            /* Reset any prior transform */
+        }
+
+        /* PROJECT IMAGE HOVER - Animation for image on hover */
+        .project-item:hover img {
+            transform: scale(1.03);
+            /* Zoom in slightly */
+        }
+
+        /* PROJECT ITEM SIZES - Grid positioning for each project */
+
+        /* LARGE PROJECT - Takes up left side, 2 rows tall */
+        /* EDIT THIS: Change grid-column/grid-row to reposition, or change aspect-ratio */
+        .project-item-large {
+            grid-column: 1 / 6;
+            /* Columns 1-5 (left side) */
+            grid-row: 1 / 3;
+            /* Rows 1-2 (full height) */
+            aspect-ratio: 2/3;
+            /* 2:3 width to height ratio */
+        }
+
+        /* SMALL PROJECT 1 - Top right project */
+        /* EDIT THIS: Change grid positioning or aspect-ratio */
+        .project-item-small-1 {
+            grid-column: 6 / 10;
+            /* Columns 6-9 */
+            grid-row: 1 / 2;
+            /* Row 1 only */
+            aspect-ratio: 3/2;
+            /* 3:2 width to height ratio (wider) */
+        }
+
+        /* SMALL PROJECT 2 - Bottom right project */
+        /* EDIT THIS: Change grid positioning or aspect-ratio */
+        .project-item-small-2 {
+            grid-column: 6 / 10;
+            /* Columns 6-9 */
+            grid-row: 2 / 3;
+            /* Row 2 only */
+            aspect-ratio: 3/2;
+            /* 3:2 width to height ratio (wider) */
+        }
+
+        /* FEATURED WORK HEADER - Text section on far right */
+        /* EDIT THIS: Change grid-column to reposition, or padding */
+        .featured-work-header {
+            grid-column: 10 / -1;
+            /* Columns 10-12 (far right) */
+            grid-row: 1 / 3;
+            /* Rows 1-2 (full height) */
+            padding: 2rem 0 0 2rem;
+            /* Top and left padding */
+            align-self: start;
+            /* Align to top */
+        }
+
+        /* FEATURED WORK TITLE - Heading in featured work section */
+        /* EDIT THIS: Change font-size, weight, or text-transform */
+        .featured-work-title {
+            font-size: 1.7rem;
+            /* Title size */
+            font-weight: 500;
+            /* Medium weight */
+            margin-bottom: 1rem;
+            /* Space below */
+            margin-top: 0;
+            /* No space above */
+        }
+
+        /* PROJECT LIST - List of project names/descriptions */
+        /* EDIT THIS: Change styling or remove list entirely */
+        .project-list {
+            list-style: none;
+            /* Remove bullet points */
+            padding: 0;
+            /* No padding */
+        }
+
+        /* PROJECT LIST ITEM - Individual project in the featured list */
+        /* EDIT THIS: Change colors or styling */
+        .project-list li {
+            font-size: 0.9rem;
+            /* Text size */
+            margin-bottom: 0.3rem;
+            /* Space between items */
+        }
+
+        /* ===================================================================
+   QUOTE SECTION - Inspirational quote with background image overlay
+   =================================================================== */
+
+        /* QUOTE SECTION CONTAINER */
+        /* EDIT THIS: Change background gradient, background-image, or height */
+        .quote-section {
+            background-color: var(--warm-brown);
+            /* Fallback color */
+            /* BACKGROUND IMAGE: Full-width background image for quote section */
+            /* EDIT THIS: Replace the image URL with your own background image */
+            background-image: url('https://i.ibb.co/wZDMBBJ0/image.jpg');
+            background-size: cover;
+            /* Cover entire section */
+            background-position: center;
+            /* Center the image */
+            padding: 0;
+            /* No padding */
+            margin: 0;
+            /* No margin */
+            text-align: left;
+            /* Align text left */
+            width: 100%;
+            /* Full width */
+            position: relative;
+            /* Enable positioning */
+            height: 80vh;
+            /* 80% of viewport height */
+            min-height: 400px;
+            /* Minimum height */
+            display: flex;
+            /* Use flexbox */
+            align-items: center;
+            /* Vertically center content */
+            overflow: hidden;
+            /* Hide overflow */
+        }
+
+        /* QUOTE SECTION OVERLAY - Darkens background image */
+        /* EDIT THIS: Change gradient colors or opacity for lighter/darker effect */
+        .quote-section::before {
+            content: '';
+            /* Create overlay */
+            position: absolute;
+            /* Float over image */
+            top: 0;
+            /* Cover from top */
+            left: 0;
+            /* Cover from left */
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            background: linear-gradient(135deg, rgba(20, 30, 48, 0.5), rgba(36, 59, 85, 0.3));
+            /* Gradient overlay */
+            z-index: 0;
+            /* Behind text */
+        }
+
+        /* QUOTE CONTENT BOX - Container for quote text */
+        /* EDIT THIS: Change padding or max-width */
+        .quote-content {
+            max-width: 500px;
+            /* Maximum width */
+            margin-left: 5%;
+            /* 5% from left */
+            position: relative;
+            /* Enable z-index */
+            z-index: 2;
+            /* Show above overlay */
+            padding: 2rem 0;
+            /* Padding top and bottom */
+        }
+
+        /* QUOTE TEXT - The actual quote paragraph */
+        /* EDIT THIS: Change font-size, weight, or line-height */
+        .quote-text {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            /* Responsive size */
+            line-height: 1.3;
+            /* Line spacing */
+            font-weight: 400;
+            /* Normal weight */
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            /* Space below */
+            color: #fff;
+            /* White text */
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            /* Text shadow for readability */
+            position: relative;
+            /* Enable animation positioning */
+            opacity: 0;
+            /* Start invisible (animated) */
+            transform: translateY(15px);
+            /* Start lower (animated) */
+        }
+
+        /* QUOTE TEXT ACTIVE - Appears when quote section comes into view */
+        .quote-text.active {
+            animation: fadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            /* Fade in animation */
+        }
+
+        /* QUOTE AUTHOR - Attribution line below quote */
+        /* EDIT THIS: Change font-size, weight, or style */
+        .quote-author {
+            font-size: 1rem;
+            /* Text size */
+            font-weight: 500;
+            /* Medium weight */
+            font-style: italic;
+            /* Italic style */
+            color: rgba(255, 255, 255, 0.95);
+            /* Nearly white text */
+            opacity: 0;
+            /* Start invisible (animated) */
+            transform: translateY(15px);
+            /* Start lower (animated) */
+        }
+
+        /* QUOTE AUTHOR ACTIVE - Appears when quote section comes into view */
+        .quote-author.active {
+            animation: fadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 0.3s forwards;
+            /* Delayed fade in */
+        }
+
+        /* ANIMATION: Fade In - Makes elements appear smoothly */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                /* Become visible */
+                transform: translateY(0);
+                /* Move to final position */
+            }
+        }
+
+        /* ===================================================================
+           PROJECTS LAYOUT 2 - Alternative grid for research/publications
+           =================================================================== */
+
+        /* PROJECT LAYOUT 2 CONTAINER - Grid container for second project showcase */
+        /* EDIT THIS: Change gap, padding, or grid columns for different layout */
+        .project-layout-2 {
+            display: grid;
+            /* Use CSS grid */
+            grid-template-columns: repeat(12, 1fr);
+            /* 12-column responsive grid */
+            grid-template-rows: auto auto;
+            /* Two automatic rows */
+            gap: 24px;
+            /* Gap between items */
+            grid-column: 1 / -1;
+            /* Span all columns */
+            padding: 0 5%;
+            /* 5% side padding */
+            margin: 0;
+            /* No margin */
+        }
+
+        /* FEATURED WORK HEADER - "Featured Work" label for second grid */
+        .project-layout-2 .featured-work-header {
+            grid-column: 1 / 4;
+            /* Columns 1-3 (width of 3) */
+            grid-row: 1 / 3;
+            /* Span both rows */
+            padding: 2rem 0 0 0;
+            /* Top padding only */
+            align-self: start;
+            /* Align to top of section */
+        }
+
+        /* SMALL PROJECT ITEM 1 - First smaller project in layout 2 */
+        /* EDIT THIS: Change grid-column or aspect-ratio for different sizing */
+        .project-layout-2 .project-item-small-1 {
+            grid-column: 4 / 8;
+            /* Columns 4-7 (width of 4) */
+            grid-row: 1 / 2;
+            /* First row only */
+            aspect-ratio: 3/2;
+            /* 1.5:1 width:height ratio */
+        }
+
+        /* SMALL PROJECT ITEM 2 - Second smaller project in layout 2 */
+        /* EDIT THIS: Change grid-column or aspect-ratio for different sizing */
+        .project-layout-2 .project-item-small-2 {
+            grid-column: 4 / 8;
+            /* Columns 4-7 (width of 4) */
+            grid-row: 2 / 3;
+            /* Second row only */
+            aspect-ratio: 3/2;
+            /* 1.5:1 width:height ratio */
+        }
+
+        /* LARGE PROJECT ITEM - Large featured project in layout 2 */
+        /* EDIT THIS: Change grid-column or aspect-ratio for different sizing */
+        .project-layout-2 .project-item-large {
+            grid-column: 8 / -1;
+            /* Columns 8-12 (right side) */
+            grid-row: 1 / 3;
+            /* Span both rows */
+            aspect-ratio: 2/3;
+            /* 0.67:1 width:height ratio (tall) */
+        }
+
+        /* ===================================================================
+           CONTACT SECTION - Split layout with image and contact information
+           =================================================================== */
+
+        /* CONTACT SECTION CONTAINER - Grid layout with image and content */
+        /* EDIT THIS: Change grid columns or overflow behavior */
+        .contact-section {
+            display: grid;
+            /* Use CSS grid */
+            grid-template-columns: repeat(12, 1fr);
+            /* 12-column responsive grid */
+            padding: 0;
+            /* No padding (image spans full height) */
+            margin: 0;
+            /* No margin */
+            overflow: hidden;
+            /* Clip overflow */
+            position: relative;
+            /* Enable positioning for ::before */
+        }
+
+        /* CONTACT SECTION DECORATIVE CORNER - Top-left corner accent */
+        /* EDIT THIS: Change border color or position */
+        .contact-section::before {
+            content: "";
+            /* Create decorative element */
+            position: absolute;
+            /* Position in corner */
+            top: 20px;
+            /* 20px from top */
+            left: 20px;
+            /* 20px from left */
+            width: 80px;
+            /* 80px width */
+            height: 80px;
+            /* 80px height */
+            border-top: 2px solid var(--gold-accent);
+            /* Top border */
+            border-left: 2px solid var(--gold-accent);
+            /* Left border */
+            z-index: 5;
+            /* Display above content */
+        }
+
+        /* CONTACT IMAGE - Left side with background image */
+        /* EDIT THIS: Change grid-column, height, or background color */
+        .contact-image {
+            grid-column: 1 / 9;
+            /* Left 8 columns */
+            height: 80vh;
+            /* 80% of viewport height */
+            min-height: 500px;
+            /* Minimum height */
+            background-color: var(--accent-light);
+            /* Fallback background */
+        }
+
+        /* CONTACT IMAGE TAG - Ensures image fills space properly */
+        .contact-image img {
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            object-fit: cover;
+            /* Cover entire container */
+        }
+
+        /* CONTACT CONTENT - Right side with text and contact info */
+        /* EDIT THIS: Change grid-column, padding, or background color */
+        .contact-content {
+            grid-column: 9 / -1;
+            /* Right 4 columns */
+            background-color: #fff;
+            /* White background */
+            padding: 20% 15%;
+            /* 20% vertical, 15% horizontal */
+            display: flex;
+            /* Use flexbox */
+            flex-direction: column;
+            /* Stack vertically */
+            justify-content: center;
+            /* Center content */
+        }
+
+        /* CONTACT TITLE - Label above main heading (typically "Get In Touch") */
+        /* EDIT THIS: Change font-size or color */
+        .contact-title {
+            font-size: 2rem;
+            /* Larger label text */
+            font-weight: 400;
+            /* Normal weight */
+            margin-bottom: 0;
+            /* No bottom margin */
+            line-height: 1;
+            /* Tight line spacing */
+            color: var(--gold-accent);
+            /* Gold accent color */
+        }
+
+        /* CONTACT TITLE BOLD - Main heading (typically "Let's Talk") */
+        /* EDIT THIS: Change font-size, weight, or color */
+        .contact-title-bold {
+            font-size: 3.5rem;
+            /* Very large heading */
+            font-weight: 600;
+            /* Semibold weight */
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            /* Large space below */
+            line-height: 1;
+            /* Tight line spacing */
+            position: relative;
+            /* Enable underline positioning */
+        }
+
+        /* CONTACT TITLE BOLD UNDERLINE - Decorative line below heading */
+        /* EDIT THIS: Change width, color, or position */
+        .contact-title-bold::after {
+            content: "";
+            /* Create underline */
+            position: absolute;
+            /* Position below heading */
+            bottom: -15px;
+            /* 15px below text */
+            left: 0;
+            /* Align left */
+            width: 40px;
+            /* 40px width */
+            height: 2px;
+            /* 2px height (thin line) */
+            background-color: var(--gold-accent);
+            /* Gold color */
+        }
+
+        /* CONTACT INFO - Container for contact details */
+        /* EDIT THIS: Change margin-bottom for spacing */
+        .contact-info {
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            /* Large space below */
+        }
+
+        /* CONTACT INFO PARAGRAPH - Individual contact detail lines */
+        .contact-info p {
+            margin-bottom: calc(var(--spacing-unit));
+            /* Space between lines */
+            font-size: 0.9rem;
+            /* Smaller text */
+        }
+
+        /* ===================================================================
+           RESPONSIVE MEDIA QUERIES - Mobile and tablet adjustments
+           =================================================================== */
+
+        /* TABLET/MOBILE BREAKPOINT (992px and below) */
+        /* EDIT THIS: Change breakpoint value (992px) for different devices */
+        @media (max-width: 992px) {
+
+            /* FLEX LAYOUT - Stack content vertically on mobile */
+            /* EDIT THIS: Adjust grid-column values for different layouts */
+            .header-content,
+            .header-image,
+            .bio-content,
+            .bio-image,
+            .contact-image,
+            .contact-content {
+                grid-column: 1 / -1;
+                /* Span all columns (full width) */
+                grid-row: auto;
+                /* Auto row height */
+            }
+
+            /* HEADER ADJUSTMENT - Make header stack vertically */
+            .header {
+                grid-template-rows: auto auto;
+                /* Two automatic rows */
+            }
+
+            /* HEADER IMAGE HEIGHT - Reduce image height on mobile */
+            .header-image {
+                height: 50vh;
+                /* 50% of viewport instead of 100% */
+            }
+
+            /* SECTION PADDING - Adjust padding for mobile screens */
+            .bio-section,
+            .projects-section {
+                padding: calc(var(--spacing-unit) * 5) 5%;
+                /* Maintain 5% horizontal padding */
+            }
+
+            /* BIO MARGIN - Add space between bio image and content */
+            .bio-content {
+                margin-bottom: calc(var(--spacing-unit) * 4);
+            }
+
+            /* PROJECT ITEMS - Stack projects vertically */
+            /* EDIT THIS: Add margin-bottom for more/less spacing */
+            .project-item-large,
+            .project-item-small-1,
+            .project-item-small-2,
+            .featured-work-header,
+            .project-layout-2 .project-item-large,
+            .project-layout-2 .project-item-small-1,
+            .project-layout-2 .project-item-small-2,
+            .project-layout-2 .featured-work-header {
+                grid-column: 1 / -1;
+                /* Full width */
+                grid-row: auto;
+                /* Auto height */
+                margin-bottom: calc(var(--spacing-unit) * 2);
+                /* Space between items */
+            }
+
+            /* FEATURED WORK HEADER - Reset header positioning */
+            .featured-work-header {
+                padding-top: 0;
+                /* Remove top padding */
+                margin-bottom: calc(var(--spacing-unit) * 4);
+                /* Extra bottom margin */
+            }
+
+            /* PROJECT LAYOUT 2 HEADER - Align header left on mobile */
+            .project-layout-2 .featured-work-header {
+                margin-left: 0;
+                /* Remove left margin */
+            }
+
+            /* CONTACT CONTENT - Full width on mobile */
+            .contact-content {
+                grid-column: 1 / -1;
+                /* Full width */
+                width: 100%;
+                /* 100% width */
+                padding: 2rem;
+                /* Standard padding */
+            }
+
+            /* CONTACT IMAGE - Full width on mobile */
+            .contact-image {
+                grid-column: 1 / -1;
+                /* Full width */
+            }
+        }
+
+        /* MAIN LAYOUT - Flex container for sections */
+        main {
+            display: flex;
+            /* Use flexbox */
+            flex-direction: column;
+            /* Stack sections vertically */
+        }
+
+        /* MAIN SECTIONS - Remove margins */
+        main>section {
+            margin: 0;
+            /* No section margins */
+        }
+
+
+        /* ===================================================================
+           ANIMATION CLASSES - Reusable animation styles
+           =================================================================== */
+
+        /* FADE IN - Makes elements appear by fading in */
+        /* EDIT THIS: Change transition duration (0.6s) or easing (cubic-bezier) */
+        .fade-in {
+            opacity: 0;
+            /* Start invisible */
+            transform: translateY(15px);
+            /* Start below final position */
+            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+                /* Smooth opacity */
+                transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            /* Smooth movement */
+        }
+
+        /* FADE IN ACTIVE - State when element appears */
+        .fade-in.active {
+            opacity: 1;
+            /* Become visible */
+            transform: translateY(0);
+            /* Move to final position */
+        }
+
+        /* SLIDE IN LEFT - Elements slide in from left side */
+        /* EDIT THIS: Change translateX(-20px) for different slide distance */
+        .slide-in-left {
+            opacity: 0;
+            /* Start invisible */
+            transform: translateX(-20px);
+            /* Start to the left */
+            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+                /* Smooth opacity */
+                transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            /* Smooth movement */
+        }
+
+        /* SLIDE IN LEFT ACTIVE - Element slides in from left */
+        .slide-in-left.active {
+            opacity: 1;
+            /* Become visible */
+            transform: translateX(0);
+            /* Move to final position */
+        }
+
+        /* SLIDE IN RIGHT - Elements slide in from right side */
+        /* EDIT THIS: Change translateX(20px) for different slide distance */
+        .slide-in-right {
+            opacity: 0;
+            /* Start invisible */
+            transform: translateX(20px);
+            /* Start to the right */
+            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+                /* Smooth opacity */
+                transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            /* Smooth movement */
+        }
+
+        /* SLIDE IN RIGHT ACTIVE - Element slides in from right */
+        .slide-in-right.active {
+            opacity: 1;
+            /* Become visible */
+            transform: translateX(0);
+            /* Move to final position */
+        }
+
+        /* ANIMATION DELAY UTILITIES - Stagger animations for multiple elements */
+        /* EDIT THIS: Adjust delay times (0.1s, 0.2s, etc) for faster/slower stagger */
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+
+        /* 100ms delay */
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+
+        /* 200ms delay */
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+
+        /* 300ms delay */
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+
+        /* 400ms delay */
+        .delay-500 {
+            transition-delay: 0.5s;
+        }
+
+        /* 500ms delay */
+
+        /* KEYFRAME ANIMATION: Fade Up - Fade in with upward movement */
+        /* EDIT THIS: Change translateY(20px) or opacity timing */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                /* Start transparent */
+                transform: translateY(20px);
+                /* Start below */
+            }
+
+            to {
+                opacity: 1;
+                /* End visible */
+                transform: translateY(0);
+                /* End at final position */
+            }
+        }
+
+        /* KEYFRAME ANIMATION: Text Reveal - Reveal text from left to right */
+        /* EDIT THIS: Change clip-path values for different reveal direction */
+        @keyframes textReveal {
+            from {
+                clip-path: inset(0 100% 0 0);
+                /* Hide 100% from right */
+            }
+
+            to {
+                clip-path: inset(0 0 0 0);
+                /* Show everything */
+            }
+        }
+
+        /* TEXT REVEAL CLASS - Reveals text animation for headers */
+        /* EDIT THIS: Change animation duration or timing function */
+        .text-reveal {
+            display: inline-block;
+            /* Treat as block for animations */
+            animation: textReveal 1s var(--animation-timing) forwards;
+            /* Apply reveal animation */
+            clip-path: inset(0 100% 0 0);
+            /* Start with text hidden */
+        }
+
+        /* BUTTON ANIMATION - Animated background fill on hover */
+        /* EDIT THIS: Change transition duration (0.3s) or colors */
+        .btn {
+            position: relative;
+            /* Enable positioning for ::before */
+            overflow: hidden;
+            /* Clip ::before background */
+            transition: color 0.3s ease, border-color 0.3s ease;
+            /* Smooth color change */
+            z-index: 1;
+            /* Stacking context */
+            border-color: var(--accent-color);
+            /* Border using accent color */
+            color: var(--accent-color);
+            /* Text color using accent */
+        }
+
+        /* BUTTON BACKGROUND FILL - Pseudo-element that fills on hover */
+        /* EDIT THIS: Change background-color or width transition */
+        .btn::before {
+            content: '';
+            /* Create background element */
+            position: absolute;
+            /* Position behind text */
+            top: 0;
+            /* Align to top */
+            left: 0;
+            /* Align to left */
+            width: 0;
+            /* Start with no width */
+            height: 100%;
+            /* Full button height */
+            background-color: var(--accent-color);
+            /* Fill color (accent) */
+            transition: width 0.3s ease;
+            /* Animate width expansion */
+            z-index: -1;
+            /* Behind button text */
+        }
+
+        /* BUTTON HOVER STATE - Text color change when hovering */
+        .btn:hover {
+            color: var(--bg-color);
+            /* Text becomes background color */
+            border-color: var(--accent-color);
+            /* Border stays accent color */
+        }
+
+        /* BUTTON HOVER BACKGROUND - Background fills on hover */
+        .btn:hover::before {
+            width: 100%;
+            /* Expand to full width */
+        }
+    </style>
+    <style>
+        /* ===================================================================
+           BACK TO TOP BUTTON - From Uiverse.io by vinodjangid07
+           =================================================================== */
+        .back-to-top-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgb(20, 20, 20);
+            border: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 0px 4px rgba(180, 160, 255, 0.253);
+            cursor: pointer;
+            transition-duration: 0.3s;
+            overflow: hidden;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .back-to-top-button.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top-icon {
+            width: 12px;
+            transition-duration: 0.3s;
+        }
+
+        .back-to-top-icon path {
+            fill: white;
+        }
+
+        .back-to-top-button:hover {
+            width: 140px;
+            border-radius: 50px;
+            transition-duration: 0.3s;
+            background-color: rgb(181, 160, 255);
+            align-items: center;
+        }
+
+        .back-to-top-button:hover .back-to-top-icon {
+            transition-duration: 0.3s;
+            transform: translateY(-200%);
+        }
+
+        .back-to-top-button::before {
+            position: absolute;
+            bottom: -20px;
+            content: "Back to Top";
+            color: white;
+            font-size: 0px;
+        }
+
+        .back-to-top-button:hover::before {
+            font-size: 13px;
+            opacity: 1;
+            bottom: unset;
+            transition-duration: 0.3s;
+        }
+
+        /* ===================================================================
+           CORE SKILLS SECTION - Light Theme Adaptation
+           =================================================================== */
+
+        /* SKILLS SECTION CONTAINER */
+        .skills-section {
+            padding: calc(var(--spacing-unit) * 6) 5%;
+            background-color: var(--neutral-light);
+            /* Light neutral background */
+        }
+
+        /* SKILLS HEADER */
+        .skills-header {
+            margin-bottom: 4rem;
+            max-width: 800px;
+        }
+
+        .skills-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 600;
+        }
+
+        .skills-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--heading-color);
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .skills-title span {
+            color: var(--accent-color);
+        }
+
+        /* SKILLS GRID */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* SKILL CARD */
+        .skill-card {
+            background: rgba(255, 255, 255, 0.6);
+            /* Semi-transparent white */
+            border: 1px solid rgba(201, 169, 128, 0.2);
+            /* Light gold border */
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.9);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(201, 169, 128, 0.15);
+        }
+
+        /* SKILL ICON */
+        .skill-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(233, 228, 219, 0.5);
+            /* var(--accent-light) with opacity */
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover .skill-icon {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* SKILL CONTENT */
+        .skill-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--warm-brown);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .skill-card h3 {
+            font-size: 1.25rem;
+            color: var(--heading-color);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .skill-desc {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* ===================================================================
+           NEW PROJECTS SECTION - Browser Mockup Style
+           =================================================================== */
+
+        /* HEADER STYLES */
+        .projects-header-new {
+            margin-bottom: 4rem;
+        }
+
+        .projects-subtitle-new {
+            display: block;
+            color: var(--accent-color);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .projects-title-new {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--heading-color);
+            line-height: 1.1;
+        }
+
+        /* GRID LAYOUT */
+        .projects-grid-new {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* PROJECT CARD */
+        .new-project-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(201, 169, 128, 0.2);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .new-project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(201, 169, 128, 0.15);
+            border-color: var(--accent-color);
+        }
+
+        /* BROWSER MOCKUP */
+        .browser-mockup {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .browser-chrome {
+            background: #f1f1f1;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 0.375rem;
+        }
+
+        .browser-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ff5f56;
+        }
+
+        .dot-yellow {
+            background: #ffbd2e;
+        }
+
+        .dot-green {
+            background: #27c93f;
+        }
+
+        .browser-bar {
+            flex: 1;
+            height: 0.5rem;
+            background: #e0e0e0;
+            border-radius: 1rem;
+            margin-left: 1rem;
+        }
+
+        /* IMAGE CONTAINER */
+        .project-image-container {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .new-project-card:hover .project-image-container img {
+            transform: scale(1.05);
+        }
+
+        /* INFO & ACTIONS */
+        .project-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 1rem;
+        }
+
+        .new-project-title {
+            font-size: 1.25rem;
+            color: var(--heading-color);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.02em;
+        }
+
+        .new-project-tags {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .action-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: rgba(201, 169, 128, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action-icon:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* EXPLORE BUTTON */
+        .explore-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .explore-btn {
+            padding: 1rem 2.5rem;
+            background: white;
+            border-radius: 9999px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--heading-color);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .explore-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .explore-btn:hover:before {
+            width: 100%;
+        }
+
+        .explore-btn:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(201, 169, 128, 0.2);
+        }
+
+        /* ===================================================================
+           NEW EXPLORE BUTTON - From Uiverse.io by Praashoo7
+           =================================================================== */
+        .explore-custom-btn {
+            outline: none;
+            color: #DAA06D;
+            padding: 1em;
+            padding-left: 3em;
+            padding-right: 3em;
+            border: 2px dashed #DAA06D;
+            border-radius: 15px;
+            background-color: #EADDCA;
+            box-shadow: 0 0 0 4px #EADDCA, 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+            transition: .1s ease-in-out, .4s color;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            /* For link behavior */
+            display: inline-block;
+        }
+
+        .explore-custom-btn:active {
+            transform: translateX(0.1em) translateY(0.1em);
+            box-shadow: 0 0 0 4px #EADDCA, 1.5px 1.5px 2.5px 1.5px rgba(0, 0, 0, 0.5);
+        }
+
+        .explore-custom-btn:hover {
+            color: #b88656;
+            border-color: #b88656;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ====================================================================
+         HEADER SECTION - Hero/Landing area with name, title, and CTA
+         ==================================================================== -->
+    <header class="header">
+        <!-- HEADER CONTENT - Left side with name and description -->
+        <div class="header-content">
+            <!-- MAIN NAME/TITLE - Change this to your name -->
+            <!-- EDIT THIS: Replace "IMASHA RANDULA" with your name -->
+            <h1 class="header-title"><span class="text-reveal">HAY!</span><br><span class="text-reveal"
+                    style="animation-delay: 0.2s;"> I'M IMASHA</span></h1>
+
+            <!-- JOB TITLE/SPECIALTY - Professional title with star decoration -->
+            <!-- EDIT THIS: Change "Data Science & Analytics" to your specialty -->
+            <p class="header-subtitle fade-in delay-300"><span class="star">✶</span>I CODE & BREAK</p>
+
+            <!-- TAGLINE/DESCRIPTION - Brief professional description -->
+            <!-- EDIT THIS: Customize your professional tagline -->
+            <p class="header-portfolio fade-in delay-400">Building toward software engineering and DevOps practices <br>
+                -full-stack development with deployment automation</p>
+
+            <!-- CALL-TO-ACTION BUTTON - Links to contact section -->
+            <!-- EDIT THIS: Change button text or href="#contact" to link elsewhere -->
+            <a href="#contact" class="btn fade-in delay-500">GET IN TOUCH</a>
+        </div>
+
+        <!-- HEADER IMAGE - Right side portrait image -->
+        <!-- EDIT THIS: Replace image URL with your own photo (landscape or square aspect ratio works best) -->
+        <div class="header-image">
+            <!-- HEADER IMAGE: Main hero/header portrait - full height image (aspect ratio: landscape/square works best) -->
+            <a href="https://ibb.co/7d0qnZJr"><img src="https://i.ibb.co/xtrN1BSz/retouch-2025090720344293.jpg"
+                    alt="retouch-2025090720344293" border="0"></a>
+        </div>
+    </header>
+
+
+
+    <!-- ====================================================================
+         BIO/ABOUT SECTION - Professional biography and image
+         ==================================================================== -->
+    <main>
+        <section class="bio-section">
+            <!-- BIO CONTENT - Left side with heading and text -->
+            <div class="bio-content">
+                <!-- SECTION HEADING - "My Biography" -->
+                <!-- EDIT THIS: Change "My Biography" to your preferred heading -->
+                <h2 class="slide-in-left">About<br>Me</h2>
+
+                <!-- BIO TEXT - Professional description paragraphs -->
+                <!-- EDIT THIS: Replace the paragraphs with your own biography text -->
+                <div class="bio-text slide-in-left delay-200">
+                    <p>I'm Imasha Randula, an IT student at Sri Lanka Institute of
+                        Information Technology (SLIIT) learning software development and
+                        DevOps practices. I'm currently building projects with Docker,
+                        CI/CD pipelines, and modern web technologies, focusing on
+                        understanding the complete application lifecycle.</p>
+                    <p>I approach learning through hands-on experimentation—building
+                        applications, deploying them, and understanding what makes software
+                        work reliably in production. Each project teaches me something new
+                        about turning code into working systems.</p>
+                </div>
+
+                <!-- DECORATIVE STAR - Optional decoration element -->
+                <span class="star slide-in-left delay-300">✶</span>
+
+                <!-- DOWNLOAD RESUME BUTTON -->
+                <div style="margin-top: 2rem;">
+                    <a href="YOUR_RESUME_LINK_HERE" class="btn slide-in-left delay-400">DOWNLOAD RESUME</a>
+                </div>
+            </div>
+
+            <!-- BIO IMAGE - Right side portrait image -->
+            <!-- EDIT THIS: Replace image URL with your own photo -->
+            <div class="bio-image">
+                <!-- BIO IMAGE: Secondary portrait for bio/about section (aspect ratio: landscape/square works best) -->
+                <a href="https://ibb.co/CKBxwjHt"><img
+                        src="https://i.ibb.co/TMczwQgT/PXL-20250120-042907330-MP-1-4-1.jpg"
+                        alt="PXL-20250120-042907330-MP-1-4-1" border="0"></a>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             CORE SKILLS SECTION - Technical Focus Area
+             ==================================================================== -->
+        <section class="skills-section">
+            <div class="container">
+                <div class="skills-header fade-in">
+                    <span class="skills-subtitle">Technical Focus</span>
+                    <h2 class="skills-title">CORE <span>SKILLS</span> I AM MASTERING</h2>
+                </div>
+
+                <div class="skills-grid">
+                    <!-- Card 1: Software Engineering -->
+                    <div class="skill-card fade-in delay-100">
+                        <div class="skill-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M16 18l6-6-6-6" />
+                                <path d="M8 6l-6 6 6 6" />
+                            </svg>
+                        </div>
+                        <p class="skill-category">Development</p>
+                        <h3>Software Engineering</h3>
+                        <p class="skill-desc">Java, Python, and Flutter development.</p>
+                    </div>
+
+
+                    <!-- Card 3: DevOps & Automation -->
+                    <div class="skill-card fade-in delay-300">
+                        <div class="skill-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                                <line x1="12" y1="22.08" x2="12" y2="12" />
+                            </svg>
+                        </div>
+                        <p class="skill-category">Infrastructure</p>
+                        <h3>DevOps & Automation</h3>
+                        <p class="skill-desc">Learning Docker, CI/CD pipelines, and automated workflows.</p>
+                    </div>
+
+                    <!-- Card 4: Database Management -->
+                    <div class="skill-card fade-in delay-400">
+                        <div class="skill-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                            </svg>
+                        </div>
+                        <p class="skill-category">Data</p>
+                        <h3>Database Management</h3>
+                        <p class="skill-desc">Working with MySQL and MongoDB for data persistence.</p>
+                    </div>
+
+                    <!-- Card 5: Backend & APIs -->
+                    <div class="skill-card fade-in delay-500">
+                        <div class="skill-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>
+                        </div>
+                        <p class="skill-category">Web</p>
+                        <h3>Backend & APIs</h3>
+                        <p class="skill-desc">Building RESTful services and server-side logic.</p>
+                    </div>
+
+                    <!-- Card 6: Tools & Version Control -->
+                    <div class="skill-card fade-in delay-500">
+                        <div class="skill-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <line x1="6" y1="3" x2="6" y2="15" />
+                                <circle cx="18" cy="6" r="3" />
+                                <circle cx="6" cy="18" r="3" />
+                                <path d="M18 9a9 9 0 0 1-9 9" />
+                            </svg>
+                        </div>
+                        <p class="skill-category">Workflow</p>
+                        <h3>Tools & Version Control</h3>
+                        <p class="skill-desc">Proficient with Git, GitHub, and professional IDEs.</p>
+                    </div>
+
+                    <!-- Card 2: Linux Ecosystem -->
+                    <div class="skill-card fade-in delay-200">
+                        <div class="skill-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                <line x1="8" y1="21" x2="16" y2="21" />
+                                <line x1="12" y1="17" x2="12" y2="21" />
+                            </svg>
+                        </div>
+                        <p class="skill-category">Operating Systems</p>
+                        <h3>Linux Ecosystem</h3>
+                        <p class="skill-desc">Hands-on experience with Linux systems, actively learning Bash scripting
+                            and command-line workflows.</p>
+                    </div>
+
+
+                    <!-- Card 7: Predictive Modeling -->
+                    <div class="skill-card fade-in delay-600">
+                        <div class="skill-icon">
+                            <!-- Brain/Network Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+                                <path
+                                    d="M3 12h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7" />
+                            </svg>
+                        </div>
+                        <p class="skill-category">Machine Learning</p>
+                        <h3>Predictive Modeling</h3>
+                        <p class="skill-desc">Linear Regression, LSTMs, and Random Forest.</p>
+                    </div>
+
+                    <!-- Card 8: Data Science -->
+                    <div class="skill-card fade-in delay-700">
+                        <div class="skill-icon">
+                            <!-- Chart/Graph Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <line x1="18" y1="20" x2="18" y2="10" />
+                                <line x1="12" y1="20" x2="12" y2="4" />
+                                <line x1="6" y1="20" x2="6" y2="14" />
+                            </svg>
+                        </div>
+                        <p class="skill-category">Analytics</p>
+                        <h3>Data Science</h3>
+                        <p class="skill-desc">Matplotlib, Scikit-learn, and Jupyter.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             PROJECTS SECTION - Recent Work Showcase
+             ==================================================================== -->
+        <section id="projects" class="skills-section"> <!-- Using skills-section container style for consistency -->
+            <div class="container">
+                <!-- Header -->
+                <div class="projects-header-new fade-in">
+                    <span class="projects-subtitle-new">My Work</span>
+                    <h2 class="projects-title-new">RECENT PROJECT</h2>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid-new">
+                    <!-- Project 1: RE GOODS -->
+                    <div class="new-project-card fade-in delay-100">
+                        <!-- Browser Mockup -->
+                        <div class="browser-mockup">
+                            <div class="browser-chrome">
+                                <div class="browser-dots">
+                                    <div class="browser-dot dot-red"></div>
+                                    <div class="browser-dot dot-yellow"></div>
+                                    <div class="browser-dot dot-green"></div>
+                                </div>
+                                <div class="browser-bar"></div>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="https://i.ibb.co/RGcxd9M0/Screenshot-From-2026-01-07-15-26-24.png"
+                                    alt="weather  Prediction site">
+                            </div>
+                        </div>
+                        <!-- Info -->
+                        <div class="project-info-row">
+                            <div>
+                                <h3 class="new-project-title">Weather Prediction</h3>
+                                <p class="new-project-tags">Web Design, Ml</p>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/itz-im45h4/homagama-weather-backend" class="action-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                                    </svg>
+                                </a>
+                                <a href="https://itz-im45h4.github.io/homagama-weather-frontend/" class="action-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: -->
+                    <div class="new-project-card fade-in delay-200">
+                        <div class="browser-mockup">
+                            <div class="browser-chrome">
+                                <div class="browser-dots">
+                                    <div class="browser-dot dot-red"></div>
+                                    <div class="browser-dot dot-yellow"></div>
+                                    <div class="browser-dot dot-green"></div>
+                                </div>
+                                <div class="browser-bar"></div>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="https://i.ibb.co/M57FjH4S/Screenshot-From-2026-01-07-19-06-44.png"
+                                    alt="TRain  reservation system  ">
+                            </div>
+                        </div>
+                        <div class="project-info-row">
+                            <div>
+                                <h3 class="new-project-title">Train Reservation System</h3>
+                                <p class="new-project-tags">Web Design, java, mysql</p>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/ThevinduDha/Train-Reservation-Website" class="action-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                                    </svg>
+                                </a>
+                                <!-- <a href="https://your-wild-lanka-go-site.com" class="action-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg> -->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: MEDICO 360 -->
+                    <div class="new-project-card fade-in delay-300">
+                        <div class="browser-mockup">
+                            <div class="browser-chrome">
+                                <div class="browser-dots">
+                                    <div class="browser-dot dot-red"></div>
+                                    <div class="browser-dot dot-yellow"></div>
+                                    <div class="browser-dot dot-green"></div>
+                                </div>
+                                <div class="browser-bar"></div>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="https://i.ibb.co/1Y2TbJ0D/Screenshot-From-2026-01-07-19-22-09.png"
+                                    alt="Appointment Booking System">
+                            </div>
+                        </div>
+                        <div class="project-info-row">
+                            <div>
+                                <h3 class="new-project-title">Appointment Booking System</h3>
+                                <p class="new-project-tags">Web Design, java</p>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/IT24201195/Beauty-Salon-Appointment-Booking-System"
+                                    class="action-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                                    </svg>
+                                </a>
+                                <!----   <a href="https://your-medico-360-site.com" class="action-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg> -->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination & Button -->
+                <div class="explore-btn-container fade-in delay-400">
+                    <a href="https://github.com/itz-im45h4/" class="explore-custom-btn">
+                        Explore more
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- ====================================================================
+             CONTACT SECTION - Split layout with image and contact information
+             ==================================================================== -->
+        <section id="contact" class="contact-section">
+            <!-- CONTACT IMAGE - Left side large image -->
+            <!-- EDIT THIS: Replace image URL with your own contact/workspace image -->
+            <div class="contact-image">
+                <!-- CONTACT IMAGE: Large image for contact section (height: 80vh) - shows workspace/data analysis environment -->
+                <img src="https://i.ibb.co/G4W8598H/pexels-marcus-aurelius-9789456.jpg" alt="Contact image">
+            </div>
+
+            <!-- CONTACT CONTENT - Right side with heading and contact info -->
+            <div class="contact-content">
+                <!-- CONTACT GREETING LABEL - "Get in" text -->
+                <!-- EDIT THIS: Change "Get in" if desired -->
+                <h2 class="contact-title slide-in-right">Get in</h2>
+
+                <!-- CONTACT MAIN HEADING - "Touch" text (main heading) -->
+                <!-- EDIT THIS: Change "Touch" to your preferred heading -->
+                <h2 class="contact-title-bold slide-in-right delay-100">Touch</h2>
+
+                <!-- CONTACT INFORMATION - Email, social links, location -->
+                <!-- EDIT THIS: Update with your actual contact details -->
+                <div class="contact-info slide-in-right delay-200">
+                    <p> </p> <!-- Blank line for spacing -->
+
+                    <!-- Gmail Link with Icon -->
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <a href="mailto:imasherrandula@gmail.com"
+                            style="display: inline-flex; align-items: center; text-decoration: none; transition: all 0.3s ease;">
+                            <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor"
+                                fill="none" viewBox="0 0 24 24"
+                                style="width: 24px; height: 24px; transition: all 0.3s ease;"
+                                onmouseover="this.style.stroke='#EA4335'; this.style.transform='scale(1.25)';"
+                                onmouseout="this.style.stroke='currentColor'; this.style.transform='scale(1)';">
+                                <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                        </a>
+                        <p style="margin: 0;">imasherrandula@gmail.com</p> <!-- Email address - EDIT THIS -->
+                    </div>
+
+                    <!-- GitHub Link with Icon -->
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <a href="https://github.com/itz-im45h4/" target="_blank"
+                            style="display: inline-flex; align-items: center; text-decoration: none; transition: all 0.3s ease;">
+                            <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor"
+                                fill="none" viewBox="0 0 24 24"
+                                style="width: 24px; height: 24px; transition: all 0.3s ease;"
+                                onmouseover="this.style.stroke='#3b82f6'; this.style.transform='scale(1.25)';"
+                                onmouseout="this.style.stroke='currentColor'; this.style.transform='scale(1)';">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                        <p style="margin: 0;">github.com/itz-im45h4/</p> <!-- GitHub profile - EDIT THIS -->
+                    </div>
+
+                    <!-- LinkedIn Link with Icon -->
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <a href="https://linkedin.com/in/im45h4" target="_blank"
+                            style="display: inline-flex; align-items: center; text-decoration: none; transition: all 0.3s ease;">
+                            <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor"
+                                fill="none" viewBox="0 0 24 24"
+                                style="width: 24px; height: 24px; transition: all 0.3s ease;"
+                                onmouseover="this.style.stroke='#0A66C2'; this.style.transform='scale(1.25)';"
+                                onmouseout="this.style.stroke='currentColor'; this.style.transform='scale(1)';">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z">
+                                </path>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <p style="margin: 0;">linkedin.com/in/im45h4</p> <!-- LinkedIn profile - EDIT THIS -->
+                    </div>
+                </div>
+
+                <!-- CONTACT CALL-TO-ACTION BUTTON -->
+                <!-- EDIT THIS: Update email address in href="mailto:..." -->
+                <a href="mailto:imasherrandula@gmail.com" class="btn slide-in-right delay-300">SEND AN EMAIL</a>
+            </div>
+
+            <!-- FLOATING GHOST ANIMATION -->
+            <div id="ghost" style="position: fixed; bottom: 20px; right: 20px; pointer-events: none; z-index: 10;">
+                <div id="red">
+                    <div id="pupil"></div>
+                    <div id="pupil1"></div>
+                    <div id="eye"></div>
+                    <div id="eye1"></div>
+                    <div id="top0"></div>
+                    <div id="top1"></div>
+                    <div id="top2"></div>
+                    <div id="top3"></div>
+                    <div id="top4"></div>
+                    <div id="st0"></div>
+                    <div id="st1"></div>
+                    <div id="st2"></div>
+                    <div id="st3"></div>
+                    <div id="st4"></div>
+                    <div id="st5"></div>
+                    <div id="an1"></div>
+                    <div id="an2"></div>
+                    <div id="an3"></div>
+                    <div id="an4"></div>
+                    <div id="an5"></div>
+                    <div id="an6"></div>
+                    <div id="an7"></div>
+                    <div id="an8"></div>
+                    <div id="an9"></div>
+                    <div id="an10"></div>
+                    <div id="an11"></div>
+                    <div id="an12"></div>
+                    <div id="an13"></div>
+                    <div id="an14"></div>
+                    <div id="an15"></div>
+                    <div id="an16"></div>
+                    <div id="an17"></div>
+                    <div id="an18"></div>
+                </div>
+                <div id="shadow"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ====================================================================
+         JAVASCRIPT - Scroll animations and interactive features
+         ==================================================================== -->
+    <script>
+        /* ===================================================================
+           INITIALIZATION - Wait for page to fully load before running scripts
+           =================================================================== */
+        document.addEventListener('DOMContentLoaded', function () {
+
+            /* HEADER TEXT VISIBILITY - Make header text immediately visible */
+            /* This prevents the header from appearing off-screen on first load */
+            document.querySelectorAll('.header-title .text-reveal').forEach(el => {
+                el.style.opacity = '1';  /* Make visible immediately */
+            });
+
+            /* ===================================================================
+               INTERSECTION OBSERVER - Triggers animations when elements enter view
+               =================================================================== */
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    /* Only trigger when element enters viewport */
+                    if (entry.isIntersecting) {
+
+                        /* FADE-IN ANIMATION - Add active class for fade effect */
+                        if (entry.target.classList.contains('fade-in')) {
+                            entry.target.classList.add('active');  /* Trigger fade-in animation */
+                        }
+
+                        /* SLIDE ANIMATIONS - Add active class for slide effects */
+                        if (entry.target.classList.contains('slide-in-left') ||
+                            entry.target.classList.contains('slide-in-right')) {
+                            entry.target.classList.add('active');  /* Trigger slide animation */
+                        }
+
+                        /* QUOTE SECTION SPECIAL HANDLING - Animate both quote text and author */
+                        if (entry.target.classList.contains('quote-section')) {
+                            /* Add active class to quote text and author separately */
+                            entry.target.querySelectorAll('.quote-text, .quote-author').forEach(el => {
+                                el.classList.add('active');  /* Trigger animation */
+                            });
+                        }
+
+                        /* SECTION CHILDREN ANIMATION - Animate all children with animation classes */
+                        if (entry.target.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').length > 0) {
+                            /* Add active class to all animated children */
+                            entry.target.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                                el.classList.add('active');  /* Trigger child animations */
+                            });
+                        }
+
+                        /* STOP OBSERVING - Don't re-trigger animation */
+                        observer.unobserve(entry.target);  /* Remove observer to prevent re-triggering */
+                    }
+                });
+            }, {
+                /* OBSERVER OPTIONS - Configure when animations trigger */
+                threshold: 0.1,                         /* Trigger at 10% visibility */
+                rootMargin: '0px 0px -100px 0px'        /* Trigger 100px before bottom enters */
+            });
+
+            /* START OBSERVING - Watch for animated elements entering viewport */
+            /* EDIT THIS: Add or remove element classes to control which elements animate */
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .bio-section, .project-layout-1, .project-layout-2, .quote-section, .contact-section').forEach(el => {
+                observer.observe(el);  /* Start watching this element */
+            });
+
+            /* ===================================================================
+               SMOOTH SCROLLING - Smooth scroll to sections when clicking links
+               =================================================================== */
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                /* Add click handler to all anchor links */
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();  /* Prevent default jump behavior */
+
+                    /* GET TARGET ELEMENT - Find the element to scroll to */
+                    const targetId = this.getAttribute('href');  /* Get the href value (e.g., #contact) */
+                    const targetElement = document.querySelector(targetId);  /* Find matching element */
+
+                    if (targetElement) {
+                        /* SMOOTH SCROLL - Animate scroll to target element */
+                        window.scrollTo({
+                            top: targetElement.offsetTop,  /* Position to scroll to (top of element) */
+                            behavior: 'smooth'             /* Use smooth scroll animation */
+                        });
+                    }
+                });
+            });
+
+            /* PARALLAX EFFECT - Currently disabled */
+            /* To enable: Uncomment code below or re-add parallax functionality */
+            /* Parallax creates depth effect as you scroll */
+
+            /* ===================================================================
+               BACK TO TOP BUTTON - Show/Hide based on scroll position
+               =================================================================== */
+            const backToTopButton = document.querySelector('.back-to-top-button');
+
+            /* SHOW/HIDE BUTTON - Display when scrolled down */
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            });
+
+            /* SCROLL TO TOP - Smooth scroll to top when clicked */
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <!-- ====================================================================
+         BACK TO TOP BUTTON - From Uiverse.io by vinodjangid07
+         ==================================================================== -->
+    <button class="back-to-top-button">
+        <svg class="back-to-top-icon" viewBox="0 0 384 512">
+            <path
+                d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+            </path>
+        </svg>
+    </button>
+
+</body>
+
+</html>
