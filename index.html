@@ -1734,22 +1734,34 @@ hello if u looking for my source code then here it is lol :D
             line-height: 1.1;
         }
 
-        /* GRID LAYOUT - Always keep Recent Projects on a single horizontal row */
+        /* GRID LAYOUT - Full-width horizontal row without shrinking cards */
+        .projects-section-full {
+            padding-left: 0;
+            padding-right: 0;
+            overflow-x: clip;
+        }
+
+        .projects-section-gutter {
+            padding: 0 5%;
+        }
+
         .projects-carousel-wrap {
             position: relative;
+            width: 100%;
         }
 
         .projects-grid-new {
-            --grid-gap: clamp(1rem, 2vw, 2rem);
+            --grid-gap: 2rem;
             display: grid;
             grid-auto-flow: column;
             grid-auto-columns: calc((100% - (2 * var(--grid-gap))) / 3);
             gap: var(--grid-gap);
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            padding: 14px 0 28px;
-            margin-top: -14px;
-            margin-bottom: calc(4rem - 28px);
+            padding: 16px clamp(1.25rem, 3.5vw, 3.5rem) 32px;
+            scroll-padding-inline: clamp(1.25rem, 3.5vw, 3.5rem);
+            margin-top: -16px;
+            margin-bottom: calc(4rem - 32px);
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
@@ -1781,11 +1793,11 @@ hello if u looking for my source code then here it is lol :D
         }
 
         .projects-scroll-btn.prev {
-            left: 0.4rem;
+            left: clamp(0.6rem, 1.5vw, 1.5rem);
         }
 
         .projects-scroll-btn.next {
-            right: 0.4rem;
+            right: clamp(0.6rem, 1.5vw, 1.5rem);
         }
 
         .projects-carousel-wrap:hover .projects-scroll-btn {
@@ -1810,7 +1822,7 @@ hello if u looking for my source code then here it is lol :D
             background: rgba(255, 255, 255, 0.6);
             border: 1px solid rgba(201, 169, 128, 0.2);
             border-radius: 1.5rem;
-            padding: clamp(0.9rem, 1.5vw, 1.5rem);
+            padding: 1.5rem;
             position: relative;
             transition: all 0.4s ease;
             backdrop-filter: blur(10px);
@@ -1905,7 +1917,7 @@ hello if u looking for my source code then here it is lol :D
         }
 
         .new-project-title {
-            font-size: clamp(0.95rem, 1.35vw, 1.25rem);
+            font-size: 1.25rem;
             color: var(--heading-color);
             font-weight: 700;
             margin-bottom: 0.25rem;
@@ -1913,7 +1925,7 @@ hello if u looking for my source code then here it is lol :D
         }
 
         .new-project-tags {
-            font-size: clamp(0.65rem, 0.85vw, 0.75rem);
+            font-size: 0.75rem;
             color: var(--accent-color);
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -1922,19 +1934,26 @@ hello if u looking for my source code then here it is lol :D
 
         .project-actions {
             display: flex;
-            gap: clamp(0.45rem, 0.8vw, 0.75rem);
+            gap: 0.75rem;
             flex-shrink: 0;
         }
 
-        @media (max-width: 1160px) {
+        @media (max-width: 1280px) {
             .projects-grid-new {
-                grid-auto-columns: minmax(310px, calc((100% - 1.5rem) / 2.15));
+                grid-auto-columns: clamp(360px, 43vw, 440px);
+                padding-left: clamp(1.25rem, 4vw, 2.5rem);
+                padding-right: clamp(1.25rem, 4vw, 2.5rem);
+                scroll-padding-inline: clamp(1.25rem, 4vw, 2.5rem);
             }
         }
 
         @media (max-width: 640px) {
             .projects-grid-new {
-                grid-auto-columns: minmax(270px, 82%);
+                grid-auto-columns: minmax(310px, 84vw);
+                --grid-gap: 1.25rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                scroll-padding-inline: 1rem;
             }
         }
 
@@ -2601,16 +2620,19 @@ hello if u looking for my source code then here it is lol :D
         <!-- ====================================================================
              PROJECTS SECTION - Recent Work Showcase
              ==================================================================== -->
-        <section id="projects" class="skills-section"> <!-- Using skills-section container style for consistency -->
-            <div class="container">
-                <!-- Header -->
-                <div class="projects-header-new fade-in">
-                    <span class="projects-subtitle-new">My Work</span>
-                    <h2 class="projects-title-new">RECENT PROJECTS</h2>
+        <section id="projects" class="skills-section projects-section-full">
+            <div class="projects-section-gutter">
+                <div class="container">
+                    <!-- Header -->
+                    <div class="projects-header-new fade-in">
+                        <span class="projects-subtitle-new">My Work</span>
+                        <h2 class="projects-title-new">RECENT PROJECTS</h2>
+                    </div>
                 </div>
+            </div>
 
-                <!-- Projects Grid -->
-                <div class="projects-carousel-wrap">
+            <!-- Full-Width Horizontal Projects Grid -->
+            <div class="projects-carousel-wrap">
                     <button type="button" id="projects-scroll-prev" class="projects-scroll-btn prev is-hidden" aria-label="Scroll projects left">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <polyline points="15 18 9 12 15 6"></polyline>
@@ -2739,13 +2761,16 @@ hello if u looking for my source code then here it is lol :D
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
                 </button>
-                </div>
+            </div>
 
-                <!-- Pagination & Button -->
-                <div class="explore-btn-container fade-in delay-400">
-                    <button type="button" id="open-projects-modal" class="explore-custom-btn" aria-haspopup="dialog" aria-controls="projects-modal">
-                        Explore more
-                    </button>
+            <div class="projects-section-gutter">
+                <div class="container">
+                    <!-- Pagination & Button -->
+                    <div class="explore-btn-container fade-in delay-400">
+                        <button type="button" id="open-projects-modal" class="explore-custom-btn" aria-haspopup="dialog" aria-controls="projects-modal">
+                            Explore more
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
