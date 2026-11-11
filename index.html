@@ -1941,6 +1941,537 @@ hello if u looking for my source code then here it is lol :D
             color: #b88656;
             border-color: #b88656;
         }
+
+        /* ===================================================================
+           PROJECTS MODAL WINDOW - Detailed Project Showcase & Archive
+           =================================================================== */
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .projects-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(30, 27, 25, 0.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1rem, 3vw, 2.5rem);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1),
+                        visibility 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .projects-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .projects-modal-window {
+            position: relative;
+            width: 100%;
+            max-width: 1360px;
+            max-height: 90vh;
+            background: var(--bg-color);
+            border: 1px solid rgba(201, 169, 128, 0.35);
+            border-radius: 2rem;
+            box-shadow: 0 30px 70px rgba(30, 27, 25, 0.28),
+                        0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(24px) scale(0.97);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .projects-modal-overlay.active .projects-modal-window {
+            transform: translateY(0) scale(1);
+        }
+
+        /* MODAL HEADER */
+        .projects-modal-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3.5vw, 3rem) 1.25rem;
+            background: linear-gradient(to bottom, rgba(248, 245, 240, 0.98), rgba(240, 236, 230, 0.85));
+            border-bottom: 1px solid rgba(201, 169, 128, 0.22);
+            flex-shrink: 0;
+        }
+
+        .projects-modal-title-group {
+            max-width: 680px;
+        }
+
+        .projects-modal-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+        }
+
+        .projects-modal-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 800;
+            color: var(--heading-color);
+            margin-bottom: 0.35rem;
+            line-height: 1.15;
+        }
+
+        .projects-modal-subtitle {
+            font-size: 0.92rem;
+            color: var(--warm-brown);
+            margin-bottom: 0;
+        }
+
+        .projects-modal-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .projects-modal-close {
+            width: 2.85rem;
+            height: 2.85rem;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 169, 128, 0.35);
+            background: white;
+            color: var(--heading-color);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .projects-modal-close:hover {
+            background: var(--heading-color);
+            color: white;
+            border-color: var(--heading-color);
+            transform: rotate(90deg) scale(1.06);
+        }
+
+        /* FILTER BAR IN MODAL */
+        .projects-modal-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem clamp(1.5rem, 3.5vw, 3rem);
+            background: rgba(255, 255, 255, 0.55);
+            border-bottom: 1px solid rgba(201, 169, 128, 0.16);
+            flex-shrink: 0;
+        }
+
+        .modal-filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .modal-filter-btn {
+            padding: 0.45rem 1.1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(201, 169, 128, 0.3);
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-color);
+            font-family: var(--font-primary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .modal-filter-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--heading-color);
+            background: white;
+        }
+
+        .modal-filter-btn.active {
+            background: var(--heading-color);
+            color: var(--bg-color);
+            border-color: var(--heading-color);
+        }
+
+        .modal-count-badge {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--warm-brown);
+        }
+
+        /* MODAL BODY & FOCUS AREA */
+        .projects-modal-body {
+            padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3.5vw, 3rem);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            flex: 1;
+        }
+
+        /* FOCUSED PROJECT SPOTLIGHT BANNER (Inside Modal) */
+        .modal-spotlight {
+            display: none;
+            background: white;
+            border: 1px solid rgba(201, 169, 128, 0.45);
+            border-radius: 1.5rem;
+            padding: clamp(1.25rem, 2.5vw, 2rem);
+            margin-bottom: 2.25rem;
+            box-shadow: 0 18px 40px rgba(91, 72, 52, 0.1);
+            animation: fadeUp 0.35s ease forwards;
+        }
+
+        .modal-spotlight.active {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            align-items: center;
+        }
+
+        .modal-spotlight-media .browser-mockup {
+            margin-bottom: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .modal-spotlight-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .modal-spotlight-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .modal-spotlight-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(201, 169, 128, 0.18);
+            color: var(--warm-brown);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .modal-spotlight-close {
+            background: transparent;
+            border: none;
+            color: var(--warm-brown);
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0.2rem 0.4rem;
+        }
+
+        .modal-spotlight-close:hover {
+            color: var(--heading-color);
+        }
+
+        .modal-spotlight-title {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 700;
+            color: var(--heading-color);
+        }
+
+        .modal-spotlight-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        .modal-spotlight-highlights {
+            list-style: none;
+            padding: 0;
+            margin: 0.25rem 0;
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        .modal-spotlight-highlights li {
+            font-size: 0.88rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .modal-spotlight-highlights li::before {
+            content: "✶";
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
+
+        /* DETAILED CARDS GRID IN MODAL */
+        .modal-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .modal-project-card {
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(201, 169, 128, 0.28);
+            border-radius: 1.5rem;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.35s ease;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(91, 72, 52, 0.05);
+        }
+
+        .modal-project-card:hover,
+        .modal-project-card.focused-card {
+            transform: translateY(-6px);
+            background: #ffffff;
+            border-color: var(--accent-color);
+            box-shadow: 0 18px 36px rgba(201, 169, 128, 0.2);
+        }
+
+        .modal-project-card.focused-card {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .modal-project-card.hidden-card {
+            display: none;
+        }
+
+        .modal-card-top .browser-mockup {
+            margin-bottom: 1.15rem;
+        }
+
+        /* TERMINAL MOCKUP FOR SYSTEMS/DEVOPS CARDS WITHOUT SCREENSHOTS */
+        .terminal-preview {
+            aspect-ratio: 16/9;
+            background: linear-gradient(145deg, #1e1b19 0%, #2c2623 100%);
+            color: #f8f5f0;
+            padding: 1.1rem 1.25rem;
+            font-family: 'Google Sans Code', 'Courier New', monospace;
+            font-size: 0.78rem;
+            line-height: 1.55;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal-preview .term-cmd {
+            color: #c9a980;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .terminal-preview .term-out {
+            color: rgba(248, 245, 240, 0.78);
+            font-size: 0.73rem;
+        }
+
+        .terminal-preview .term-status {
+            margin-top: 0.55rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #6ee7b7;
+            font-size: 0.72rem;
+        }
+
+        .modal-card-category {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--warm-brown);
+            background: rgba(201, 169, 128, 0.15);
+            padding: 0.22rem 0.65rem;
+            border-radius: 999px;
+            margin-bottom: 0.6rem;
+        }
+
+        .modal-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-card-desc {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .modal-tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .modal-tech-pill {
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            background: var(--neutral-light);
+            color: var(--heading-color);
+            border: 1px solid rgba(201, 169, 128, 0.25);
+        }
+
+        .modal-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid rgba(201, 169, 128, 0.2);
+        }
+
+        .modal-focus-trigger {
+            background: none;
+            border: none;
+            color: var(--gold-accent);
+            font-family: var(--font-primary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .modal-focus-trigger:hover {
+            color: var(--heading-color);
+            transform: translateX(2px);
+        }
+
+        .modal-card-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-action-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.42rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            background: rgba(201, 169, 128, 0.14);
+            color: var(--heading-color);
+            border: 1px solid rgba(201, 169, 128, 0.3);
+            transition: all 0.25s ease;
+        }
+
+        .modal-action-link:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        /* MODAL FOOTER */
+        .projects-modal-footer {
+            padding: 1rem clamp(1.5rem, 3.5vw, 3rem);
+            background: rgba(240, 236, 230, 0.9);
+            border-top: 1px solid rgba(201, 169, 128, 0.22);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .projects-modal-footer-note {
+            font-size: 0.85rem;
+            color: var(--warm-brown);
+            margin-bottom: 0;
+        }
+
+        .modal-github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            border-radius: 999px;
+            background: var(--heading-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+        }
+
+        .modal-github-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Subtle pointer on main homepage cards to open in modal focus */
+        .new-project-card {
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .modal-spotlight.active {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .projects-modal-overlay {
+                padding: 0.5rem;
+            }
+
+            .projects-modal-window {
+                max-height: 95vh;
+                border-radius: 1.25rem;
+            }
+
+            .modal-projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -2090,8 +2621,8 @@ hello if u looking for my source code then here it is lol :D
 
                 <!-- Projects Grid -->
                 <div class="projects-grid-new">
-                    <!-- Project 1: RE GOODS -->
-                    <div class="new-project-card fade-in delay-100">
+                    <!-- Project 1: Weather Prediction -->
+                    <div class="new-project-card fade-in delay-100" data-open-project="weather" title="Click to view project details">
                         <!-- Browser Mockup -->
                         <div class="browser-mockup">
                             <div class="browser-chrome">
@@ -2114,7 +2645,7 @@ hello if u looking for my source code then here it is lol :D
                                 <p class="new-project-tags">Web Design, Ml, Python</p>
                             </div>
                             <div class="project-actions">
-                                <a href="https://github.com/itz-im45h4/homagama-weather-backend" class="action-icon">
+                                <a href="https://github.com/itz-im45h4/homagama-weather-backend" target="_blank" rel="noopener noreferrer" class="action-icon" aria-label="Weather Prediction GitHub">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round">
@@ -2123,7 +2654,7 @@ hello if u looking for my source code then here it is lol :D
                                         <path d="M9 18c-4.51 2-5-2-7-2" />
                                     </svg>
                                 </a>
-                                <a href="https://itz-im45h4.github.io/homagama-weather-frontend/" class="action-icon">
+                                <a href="https://itz-im45h4.github.io/homagama-weather-frontend/" target="_blank" rel="noopener noreferrer" class="action-icon" aria-label="Weather Prediction Live Demo">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round">
@@ -2136,8 +2667,8 @@ hello if u looking for my source code then here it is lol :D
                         </div>
                     </div>
 
-                    <!-- Project 2: -->
-                    <div class="new-project-card fade-in delay-200">
+                    <!-- Project 2: Train Reservation System -->
+                    <div class="new-project-card fade-in delay-200" data-open-project="train" title="Click to view project details">
                         <div class="browser-mockup">
                             <div class="browser-chrome">
                                 <div class="browser-dots">
@@ -2158,7 +2689,7 @@ hello if u looking for my source code then here it is lol :D
                                 <p class="new-project-tags">Web Design, java, mysql</p>
                             </div>
                             <div class="project-actions">
-                                <a href="https://github.com/ThevinduDha/Train-Reservation-Website" class="action-icon">
+                                <a href="https://github.com/ThevinduDha/Train-Reservation-Website" target="_blank" rel="noopener noreferrer" class="action-icon" aria-label="Train Reservation GitHub">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round">
@@ -2167,21 +2698,12 @@ hello if u looking for my source code then here it is lol :D
                                         <path d="M9 18c-4.51 2-5-2-7-2" />
                                     </svg>
                                 </a>
-                                <!-- <a href="https://your-wild-lanka-go-site.com" class="action-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                        <polyline points="15 3 21 3 21 9" />
-                                        <line x1="10" y1="14" x2="21" y2="3" />
-                                    </svg> -->
-                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 3: MEDICO 360 -->
-                    <div class="new-project-card fade-in delay-300">
+                    <!-- Project 3: Appointment Booking System -->
+                    <div class="new-project-card fade-in delay-300" data-open-project="salon" title="Click to view project details">
                         <div class="browser-mockup">
                             <div class="browser-chrome">
                                 <div class="browser-dots">
@@ -2202,8 +2724,8 @@ hello if u looking for my source code then here it is lol :D
                                 <p class="new-project-tags">Web Design, java</p>
                             </div>
                             <div class="project-actions">
-                                <a href="https://github.com/IT24201195/Beauty-Salon-Appointment-Booking-System"
-                                    class="action-icon">
+                                <a href="https://github.com/IT24201195/Beauty-Salon-Appointment-Booking-System" target="_blank" rel="noopener noreferrer"
+                                    class="action-icon" aria-label="Appointment Booking GitHub">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round">
@@ -2212,15 +2734,6 @@ hello if u looking for my source code then here it is lol :D
                                         <path d="M9 18c-4.51 2-5-2-7-2" />
                                     </svg>
                                 </a>
-                                <!----   <a href="https://your-medico-360-site.com" class="action-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                        <polyline points="15 3 21 3 21 9" />
-                                        <line x1="10" y1="14" x2="21" y2="3" />
-                                    </svg> -->
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -2228,12 +2741,315 @@ hello if u looking for my source code then here it is lol :D
 
                 <!-- Pagination & Button -->
                 <div class="explore-btn-container fade-in delay-400">
-                    <a href="https://github.com/itz-im45h4/" class="explore-custom-btn">
+                    <button type="button" id="open-projects-modal" class="explore-custom-btn" aria-haspopup="dialog" aria-controls="projects-modal">
                         Explore more
-                    </a>
+                    </button>
                 </div>
             </div>
         </section>
+
+        <!-- ====================================================================
+             PROJECTS MODAL WINDOW - Detailed Cards + Additional Projects
+             ==================================================================== -->
+        <div id="projects-modal" class="projects-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="projects-modal-heading" aria-hidden="true">
+            <div class="projects-modal-window">
+                <!-- Modal Header -->
+                <div class="projects-modal-header">
+                    <div class="projects-modal-title-group">
+                        <span class="projects-modal-eyebrow"><span class="star">✶</span> Project Archive &amp; Case Studies</span>
+                        <h2 id="projects-modal-heading" class="projects-modal-title">ALL PROJECTS IN FOCUS</h2>
+                        <p class="projects-modal-subtitle">Click any project card below to inspect its architecture, features, and live links in the focus view.</p>
+                    </div>
+                    <div class="projects-modal-controls">
+                        <button type="button" id="close-projects-modal" class="projects-modal-close" aria-label="Close modal window">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Filter Toolbar -->
+                <div class="projects-modal-toolbar">
+                    <div class="modal-filter-tabs" role="tablist" aria-label="Filter projects by category">
+                        <button type="button" class="modal-filter-btn active" data-filter="all">All Projects (6)</button>
+                        <button type="button" class="modal-filter-btn" data-filter="web">Web &amp; Full-Stack</button>
+                        <button type="button" class="modal-filter-btn" data-filter="devops">Cloud &amp; DevOps</button>
+                        <button type="button" class="modal-filter-btn" data-filter="ml">ML &amp; Data</button>
+                    </div>
+                    <span id="modal-project-count" class="modal-count-badge">Showing 6 of 6 projects</span>
+                </div>
+
+                <!-- Modal Scrollable Content -->
+                <div class="projects-modal-body" id="projects-modal-body">
+                    <!-- Focused Project Spotlight (Expands when a card is selected) -->
+                    <div id="modal-spotlight" class="modal-spotlight" aria-live="polite">
+                        <div class="modal-spotlight-media" id="spotlight-media"></div>
+                        <div class="modal-spotlight-content">
+                            <div class="modal-spotlight-header">
+                                <span id="spotlight-category" class="modal-spotlight-badge">Featured Focus</span>
+                                <button type="button" id="close-spotlight-btn" class="modal-spotlight-close">Hide Focus View</button>
+                            </div>
+                            <h3 id="spotlight-title" class="modal-spotlight-title">Project Title</h3>
+                            <p id="spotlight-desc" class="modal-spotlight-desc"></p>
+                            <ul id="spotlight-highlights" class="modal-spotlight-highlights"></ul>
+                            <div id="spotlight-tags" class="modal-tech-pills"></div>
+                            <div id="spotlight-links" class="modal-card-links"></div>
+                        </div>
+                    </div>
+
+                    <!-- All Detailed Project Cards Grid (3 Featured + Additional Cards) -->
+                    <div class="modal-projects-grid" id="modal-projects-grid">
+
+                        <!-- Card 1: Weather Prediction -->
+                        <article class="modal-project-card" data-project-id="weather" data-category="ml web">
+                            <div class="modal-card-top">
+                                <div class="browser-mockup">
+                                    <div class="browser-chrome">
+                                        <div class="browser-dots">
+                                            <div class="browser-dot dot-red"></div>
+                                            <div class="browser-dot dot-yellow"></div>
+                                            <div class="browser-dot dot-green"></div>
+                                        </div>
+                                        <div class="browser-bar"></div>
+                                    </div>
+                                    <div class="project-image-container">
+                                        <img src="images/weather.png" alt="Weather Prediction Homagama">
+                                    </div>
+                                </div>
+                                <span class="modal-card-category">Machine Learning · Web App</span>
+                                <h3 class="modal-card-title">Weather Prediction (Homagama)</h3>
+                                <p class="modal-card-desc">Localized weather forecasting platform for Homagama powered by a Python ML backend and a responsive glassmorphic dashboard displaying real-time atmospheric metrics.</p>
+                                <div class="modal-tech-pills">
+                                    <span class="modal-tech-pill">Python</span>
+                                    <span class="modal-tech-pill">Machine Learning</span>
+                                    <span class="modal-tech-pill">REST API</span>
+                                    <span class="modal-tech-pill">Frontend UI</span>
+                                </div>
+                            </div>
+                            <div class="modal-card-footer">
+                                <button type="button" class="modal-focus-trigger" data-focus-btn="weather">
+                                    <span>Focus Details</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                                </button>
+                                <div class="modal-card-links">
+                                    <a href="https://github.com/itz-im45h4/homagama-weather-backend" target="_blank" rel="noopener noreferrer" class="modal-action-link">GitHub</a>
+                                    <a href="https://itz-im45h4.github.io/homagama-weather-frontend/" target="_blank" rel="noopener noreferrer" class="modal-action-link">Live Site</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 2: Train Reservation System -->
+                        <article class="modal-project-card" data-project-id="train" data-category="web">
+                            <div class="modal-card-top">
+                                <div class="browser-mockup">
+                                    <div class="browser-chrome">
+                                        <div class="browser-dots">
+                                            <div class="browser-dot dot-red"></div>
+                                            <div class="browser-dot dot-yellow"></div>
+                                            <div class="browser-dot dot-green"></div>
+                                        </div>
+                                        <div class="browser-bar"></div>
+                                    </div>
+                                    <div class="project-image-container">
+                                        <img src="images/train.png" alt="Train Reservation System">
+                                    </div>
+                                </div>
+                                <span class="modal-card-category">Full-Stack · Enterprise Web</span>
+                                <h3 class="modal-card-title">Train Reservation System</h3>
+                                <p class="modal-card-desc">Full-featured railway ticketing and schedule management system built with Java and MySQL, supporting seat allocation, route lookups, and passenger booking workflows.</p>
+                                <div class="modal-tech-pills">
+                                    <span class="modal-tech-pill">Java</span>
+                                    <span class="modal-tech-pill">MySQL</span>
+                                    <span class="modal-tech-pill">MVC Architecture</span>
+                                    <span class="modal-tech-pill">Web Design</span>
+                                </div>
+                            </div>
+                            <div class="modal-card-footer">
+                                <button type="button" class="modal-focus-trigger" data-focus-btn="train">
+                                    <span>Focus Details</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                                </button>
+                                <div class="modal-card-links">
+                                    <a href="https://github.com/ThevinduDha/Train-Reservation-Website" target="_blank" rel="noopener noreferrer" class="modal-action-link">GitHub</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 3: Appointment Booking System -->
+                        <article class="modal-project-card" data-project-id="salon" data-category="web">
+                            <div class="modal-card-top">
+                                <div class="browser-mockup">
+                                    <div class="browser-chrome">
+                                        <div class="browser-dots">
+                                            <div class="browser-dot dot-red"></div>
+                                            <div class="browser-dot dot-yellow"></div>
+                                            <div class="browser-dot dot-green"></div>
+                                        </div>
+                                        <div class="browser-bar"></div>
+                                    </div>
+                                    <div class="project-image-container">
+                                        <img src="images/salon.png" alt="Appointment Booking System">
+                                    </div>
+                                </div>
+                                <span class="modal-card-category">Web Application · Java</span>
+                                <h3 class="modal-card-title">Appointment Booking System</h3>
+                                <p class="modal-card-desc">Beauty salon appointment scheduling and client management portal engineered in Java, featuring time-slot conflict prevention, service catalogs, and admin dashboards.</p>
+                                <div class="modal-tech-pills">
+                                    <span class="modal-tech-pill">Java</span>
+                                    <span class="modal-tech-pill">Servlets / JSP</span>
+                                    <span class="modal-tech-pill">UI/UX Design</span>
+                                    <span class="modal-tech-pill">CRUD</span>
+                                </div>
+                            </div>
+                            <div class="modal-card-footer">
+                                <button type="button" class="modal-focus-trigger" data-focus-btn="salon">
+                                    <span>Focus Details</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                                </button>
+                                <div class="modal-card-links">
+                                    <a href="https://github.com/IT24201195/Beauty-Salon-Appointment-Booking-System" target="_blank" rel="noopener noreferrer" class="modal-action-link">GitHub</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 4 (Additional Modal Card): Containerized Microservices & CI/CD -->
+                        <article class="modal-project-card" data-project-id="cicd" data-category="devops">
+                            <div class="modal-card-top">
+                                <div class="browser-mockup">
+                                    <div class="browser-chrome">
+                                        <div class="browser-dots">
+                                            <div class="browser-dot dot-red"></div>
+                                            <div class="browser-dot dot-yellow"></div>
+                                            <div class="browser-dot dot-green"></div>
+                                        </div>
+                                        <div class="browser-bar"></div>
+                                    </div>
+                                    <div class="terminal-preview">
+                                        <div class="term-cmd">$ docker compose -f prod.yml up -d --build</div>
+                                        <div class="term-out">[+] Building multi-stage image (alpine-slim)...</div>
+                                        <div class="term-out">[+] GH Actions workflow: test → build → deploy</div>
+                                        <div class="term-status">● All 4 container replicas healthy</div>
+                                    </div>
+                                </div>
+                                <span class="modal-card-category">DevOps · GitOps</span>
+                                <h3 class="modal-card-title">Dockerized CI/CD Deployment Pipeline</h3>
+                                <p class="modal-card-desc">Automated build, test, and container delivery workflow using Docker multi-stage builds and GitHub Actions for zero-downtime Linux server deployments.</p>
+                                <div class="modal-tech-pills">
+                                    <span class="modal-tech-pill">Docker</span>
+                                    <span class="modal-tech-pill">GitHub Actions</span>
+                                    <span class="modal-tech-pill">Linux</span>
+                                    <span class="modal-tech-pill">CI/CD</span>
+                                </div>
+                            </div>
+                            <div class="modal-card-footer">
+                                <button type="button" class="modal-focus-trigger" data-focus-btn="cicd">
+                                    <span>Focus Details</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                                </button>
+                                <div class="modal-card-links">
+                                    <a href="https://github.com/itz-im45h4/" target="_blank" rel="noopener noreferrer" class="modal-action-link">GitHub</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 5 (Additional Modal Card): Cloudflare Edge Proxy & Routing -->
+                        <article class="modal-project-card" data-project-id="edge" data-category="devops web">
+                            <div class="modal-card-top">
+                                <div class="browser-mockup">
+                                    <div class="browser-chrome">
+                                        <div class="browser-dots">
+                                            <div class="browser-dot dot-red"></div>
+                                            <div class="browser-dot dot-yellow"></div>
+                                            <div class="browser-dot dot-green"></div>
+                                        </div>
+                                        <div class="browser-bar"></div>
+                                    </div>
+                                    <div class="terminal-preview">
+                                        <div class="term-cmd">$ wrangler deploy --env production</div>
+                                        <div class="term-out">Routing TLS traffic via Cloudflare Edge Network</div>
+                                        <div class="term-out">Reverse proxy rules &amp; rate-limiting active</div>
+                                        <div class="term-status">● Edge latency: ~14ms p95</div>
+                                    </div>
+                                </div>
+                                <span class="modal-card-category">Cloud Networking · Edge</span>
+                                <h3 class="modal-card-title">Edge Routing &amp; Reverse Proxy Gateway</h3>
+                                <p class="modal-card-desc">Serverless edge gateway built on Cloudflare Workers to manage custom DNS routing, TLS termination, security headers, and origin load balancing.</p>
+                                <div class="modal-tech-pills">
+                                    <span class="modal-tech-pill">Cloudflare Workers</span>
+                                    <span class="modal-tech-pill">Reverse Proxy</span>
+                                    <span class="modal-tech-pill">DNS &amp; TLS</span>
+                                    <span class="modal-tech-pill">JavaScript</span>
+                                </div>
+                            </div>
+                            <div class="modal-card-footer">
+                                <button type="button" class="modal-focus-trigger" data-focus-btn="edge">
+                                    <span>Focus Details</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                                </button>
+                                <div class="modal-card-links">
+                                    <a href="https://github.com/itz-im45h4/" target="_blank" rel="noopener noreferrer" class="modal-action-link">GitHub</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 6 (Additional Modal Card): Linux Systems & Cloud Observability -->
+                        <article class="modal-project-card" data-project-id="linux" data-category="devops">
+                            <div class="modal-card-top">
+                                <div class="browser-mockup">
+                                    <div class="browser-chrome">
+                                        <div class="browser-dots">
+                                            <div class="browser-dot dot-red"></div>
+                                            <div class="browser-dot dot-yellow"></div>
+                                            <div class="browser-dot dot-green"></div>
+                                        </div>
+                                        <div class="browser-bar"></div>
+                                    </div>
+                                    <div class="terminal-preview">
+                                        <div class="term-cmd">$ systemctl status node-health-monitor.service</div>
+                                        <div class="term-out">Active: active (running) · OCI &amp; AWS VPC nodes</div>
+                                        <div class="term-out">Automated log rotation, CPU/disk alerts &amp; backups</div>
+                                        <div class="term-status">● Uptime: 99.98% verified</div>
+                                    </div>
+                                </div>
+                                <span class="modal-card-category">Systems · SRE &amp; Cloud</span>
+                                <h3 class="modal-card-title">Linux Server Automation &amp; Observability</h3>
+                                <p class="modal-card-desc">Collection of Bash/Fish automation scripts and Systemd units for provisioning OCI/AWS cloud instances, monitoring health logs, and automating backups.</p>
+                                <div class="modal-tech-pills">
+                                    <span class="modal-tech-pill">Linux Admin</span>
+                                    <span class="modal-tech-pill">Bash / Fish</span>
+                                    <span class="modal-tech-pill">Systemd</span>
+                                    <span class="modal-tech-pill">AWS / OCI</span>
+                                </div>
+                            </div>
+                            <div class="modal-card-footer">
+                                <button type="button" class="modal-focus-trigger" data-focus-btn="linux">
+                                    <span>Focus Details</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                                </button>
+                                <div class="modal-card-links">
+                                    <a href="https://github.com/itz-im45h4/" target="_blank" rel="noopener noreferrer" class="modal-action-link">GitHub</a>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="projects-modal-footer">
+                    <p class="projects-modal-footer-note">Want to explore more repositories, scripts, and open-source commits?</p>
+                    <a href="https://github.com/itz-im45h4/" target="_blank" rel="noopener noreferrer" class="modal-github-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                            <path d="M9 18c-4.51 2-5-2-7-2"/>
+                        </svg>
+                        <span>Visit My GitHub Profile</span>
+                    </a>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -2467,6 +3283,239 @@ hello if u looking for my source code then here it is lol :D
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
+                });
+            });
+
+            /* ===================================================================
+               PROJECTS MODAL WINDOW - Interactive Logic, Focus Spotlight & Filter
+               =================================================================== */
+            const projectDetailsData = {
+                weather: {
+                    title: 'Weather Prediction (Homagama)',
+                    category: 'Machine Learning · Web App',
+                    desc: 'End-to-end localized weather forecasting application built for Homagama. Combines a Python machine learning backend for predicting temperature, precipitation probability, and humidity trends with a clean glassmorphic web interface.',
+                    highlights: [
+                        'Trained ML forecasting pipeline in Python serving predictions via REST endpoints',
+                        'Interactive glassmorphic dashboard displaying multi-day and hourly weather metrics',
+                        'Decoupled frontend and backend repositories deployed for live public access'
+                    ],
+                    tags: ['Python', 'Machine Learning', 'REST API', 'JavaScript', 'Responsive UI'],
+                    links: [
+                        { label: 'Backend Repo (GitHub)', url: 'https://github.com/itz-im45h4/homagama-weather-backend' },
+                        { label: 'Live Demo', url: 'https://itz-im45h4.github.io/homagama-weather-frontend/' }
+                    ]
+                },
+                train: {
+                    title: 'Train Reservation System',
+                    category: 'Full-Stack · Enterprise Web',
+                    desc: 'Comprehensive web-based railway reservation and schedule management platform engineered with Java and MySQL. Designed to handle passenger ticket bookings, train route lookups, seat availability, and administrative schedule control.',
+                    highlights: [
+                        'Relational MySQL database schema for routes, schedules, seats, and passenger bookings',
+                        'Java MVC backend handling authentication, reservation transactions, and validation',
+                        'Modern dark-gold UI theme for intuitive route search and ticket management'
+                    ],
+                    tags: ['Java', 'MySQL', 'JDBC / Servlets', 'MVC Architecture', 'Web Design'],
+                    links: [
+                        { label: 'View Source on GitHub', url: 'https://github.com/ThevinduDha/Train-Reservation-Website' }
+                    ]
+                },
+                salon: {
+                    title: 'Appointment Booking System',
+                    category: 'Web Application · Java',
+                    desc: 'Online appointment scheduling and customer management portal built for a beauty salon. Streamlines client bookings, stylist availability, service selection, and administrative oversight.',
+                    highlights: [
+                        'Real-time slot booking workflow preventing overlapping customer appointments',
+                        'Service catalog showcase with warm, editorial frontend aesthetics',
+                        'Java-based server-side processing for customer records and booking lifecycle'
+                    ],
+                    tags: ['Java', 'Servlets / JSP', 'Web Design', 'Session Management', 'CRUD'],
+                    links: [
+                        { label: 'View Source on GitHub', url: 'https://github.com/IT24201195/Beauty-Salon-Appointment-Booking-System' }
+                    ]
+                },
+                cicd: {
+                    title: 'Dockerized CI/CD Deployment Pipeline',
+                    category: 'DevOps · GitOps',
+                    desc: 'Automated container build and deployment workflow designed to package backend microservices into lightweight Docker images and ship updates to Linux production hosts via GitHub Actions.',
+                    highlights: [
+                        'Multi-stage Dockerfiles minimizing production image footprint and attack surface',
+                        'GitHub Actions pipelines running automated linting, test suites, and image publishing',
+                        'Health-checked container rollouts with automatic restart policies on Linux hosts'
+                    ],
+                    tags: ['Docker', 'GitHub Actions', 'CI/CD', 'Linux', 'Container Orchestration'],
+                    links: [
+                        { label: 'GitHub Profile', url: 'https://github.com/itz-im45h4/' }
+                    ]
+                },
+                edge: {
+                    title: 'Edge Routing & Reverse Proxy Gateway',
+                    category: 'Cloud Networking · Edge',
+                    desc: 'Edge traffic routing and reverse proxy configuration utilizing Cloudflare Workers and custom DNS rules to secure backend services, enforce TLS, and optimize response latency.',
+                    highlights: [
+                        'Serverless request routing and custom header injection at the Cloudflare edge',
+                        'Origin shielding, strict TLS termination, and rate-limiting rules for backend APIs',
+                        'Zero-downtime traffic switching across distributed cloud endpoints'
+                    ],
+                    tags: ['Cloudflare Workers', 'Reverse Proxy', 'DNS & TLS', 'Edge Computing', 'Networking'],
+                    links: [
+                        { label: 'GitHub Profile', url: 'https://github.com/itz-im45h4/' }
+                    ]
+                },
+                linux: {
+                    title: 'Linux Server Automation & Observability',
+                    category: 'Systems · SRE & Cloud',
+                    desc: 'Suite of Bash and Fish shell scripts paired with Systemd services for provisioning cloud instances on AWS and Oracle Cloud (OCI), monitoring system health, and automating routine maintenance.',
+                    highlights: [
+                        'Automated VPC instance bootstrap, SSH hardening, and firewall configuration',
+                        'Systemd service units and timers for log analysis, resource alerts, and backups',
+                        'Reproducible environment setup across Linux server distributions'
+                    ],
+                    tags: ['Linux Admin', 'Bash / Fish', 'Systemd', 'AWS & OCI', 'Observability'],
+                    links: [
+                        { label: 'GitHub Profile', url: 'https://github.com/itz-im45h4/' }
+                    ]
+                }
+            };
+
+            const projectsModal = document.getElementById('projects-modal');
+            const projectsModalBody = document.getElementById('projects-modal-body');
+            const openModalBtn = document.getElementById('open-projects-modal');
+            const closeModalBtn = document.getElementById('close-projects-modal');
+            const modalCards = document.querySelectorAll('.modal-project-card');
+            const filterBtns = document.querySelectorAll('.modal-filter-btn');
+            const projectCountLabel = document.getElementById('modal-project-count');
+
+            const spotlightEl = document.getElementById('modal-spotlight');
+            const spotlightMedia = document.getElementById('spotlight-media');
+            const spotlightCategory = document.getElementById('spotlight-category');
+            const spotlightTitle = document.getElementById('spotlight-title');
+            const spotlightDesc = document.getElementById('spotlight-desc');
+            const spotlightHighlights = document.getElementById('spotlight-highlights');
+            const spotlightTags = document.getElementById('spotlight-tags');
+            const spotlightLinks = document.getElementById('spotlight-links');
+            const closeSpotlightBtn = document.getElementById('close-spotlight-btn');
+
+            function focusProjectInModal(projectId, scrollToTop = true) {
+                const data = projectDetailsData[projectId];
+                const sourceCard = document.querySelector(`.modal-project-card[data-project-id="${projectId}"]`);
+                if (!data || !sourceCard) return;
+
+                modalCards.forEach(c => c.classList.toggle('focused-card', c.dataset.projectId === projectId));
+
+                const mockupClone = sourceCard.querySelector('.browser-mockup').cloneNode(true);
+                spotlightMedia.innerHTML = '';
+                spotlightMedia.appendChild(mockupClone);
+
+                spotlightCategory.textContent = data.category;
+                spotlightTitle.textContent = data.title;
+                spotlightDesc.textContent = data.desc;
+
+                spotlightHighlights.innerHTML = data.highlights
+                    .map(item => `<li>${item}</li>`)
+                    .join('');
+
+                spotlightTags.innerHTML = data.tags
+                    .map(tag => `<span class="modal-tech-pill">${tag}</span>`)
+                    .join('');
+
+                spotlightLinks.innerHTML = data.links
+                    .map(link => `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="modal-action-link">${link.label} ↗</a>`)
+                    .join('');
+
+                spotlightEl.classList.add('active');
+
+                if (scrollToTop && projectsModalBody) {
+                    projectsModalBody.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+
+            function hideSpotlight() {
+                spotlightEl.classList.remove('active');
+                modalCards.forEach(c => c.classList.remove('focused-card'));
+            }
+
+            function openProjectsModal(initialProjectId = 'weather') {
+                if (!projectsModal) return;
+                projectsModal.classList.add('active');
+                projectsModal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+
+                if (initialProjectId && projectDetailsData[initialProjectId]) {
+                    focusProjectInModal(initialProjectId, false);
+                    if (projectsModalBody) projectsModalBody.scrollTop = 0;
+                } else {
+                    hideSpotlight();
+                }
+            }
+
+            function closeProjectsModal() {
+                if (!projectsModal) return;
+                projectsModal.classList.remove('active');
+                projectsModal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+            }
+
+            if (openModalBtn) {
+                openModalBtn.addEventListener('click', () => openProjectsModal('weather'));
+            }
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeProjectsModal);
+            }
+
+            if (closeSpotlightBtn) {
+                closeSpotlightBtn.addEventListener('click', hideSpotlight);
+            }
+
+            /* Close when clicking outside the modal window (on overlay backdrop) */
+            if (projectsModal) {
+                projectsModal.addEventListener('click', (e) => {
+                    if (e.target === projectsModal) {
+                        closeProjectsModal();
+                    }
+                });
+            }
+
+            /* Close on Escape key */
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && projectsModal && projectsModal.classList.contains('active')) {
+                    closeProjectsModal();
+                }
+            });
+
+            /* Clicking a card inside the modal focuses it in the Spotlight area */
+            modalCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('a')) return; /* Let direct GitHub/Live links open normally */
+                    focusProjectInModal(card.dataset.projectId, true);
+                });
+            });
+
+            /* Clicking any of the 3 homepage project cards opens the modal focused on that project */
+            document.querySelectorAll('.new-project-card[data-open-project]').forEach(homeCard => {
+                homeCard.addEventListener('click', (e) => {
+                    if (e.target.closest('a')) return; /* Let action icons open GitHub/Live site directly */
+                    openProjectsModal(homeCard.dataset.openProject);
+                });
+            });
+
+            /* Category filter buttons inside modal */
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.dataset.filter;
+                    filterBtns.forEach(b => b.classList.toggle('active', b === btn));
+
+                    let visibleCount = 0;
+                    modalCards.forEach(card => {
+                        const categories = (card.dataset.category || '').split(' ');
+                        const match = filter === 'all' || categories.includes(filter);
+                        card.classList.toggle('hidden-card', !match);
+                        if (match) visibleCount++;
+                    });
+
+                    if (projectCountLabel) {
+                        projectCountLabel.textContent = `Showing ${visibleCount} of ${modalCards.length} projects`;
+                    }
                 });
             });
         });
