@@ -3082,6 +3082,35 @@ hello if u looking for my source code then here it is lol :D ENJOY BAHAHAHAHHA
                              url: Destination URL
                =================================================================== */
             const PROJECTS_DATA = [
+
+             {
+                    id: 'ridelink',
+                    title: 'Microservices Backend Platform',
+                    tags: 'Java, Spring Boot, MongoDB, Microservices',
+                    preview: {
+                        type: 'terminal',
+                        command: '$ ./mvnw clean install && docker compose up -d',
+                        lines: [
+                            '[+] Initializing Maven multi-module reactor...',
+                            '[+] Starting 4 Spring Boot microservices (Account, Driver, Ride, Fare)...'
+                        ],
+                        status: '● All 4 bounded contexts & RabbitMQ broker healthy'
+                    },
+                    shortDesc: 'Enterprise-grade backend ride-sharing microservices platform built with Java 21, Spring Boot, MongoDB Atlas, and asynchronous messaging via RabbitMQ.',
+                    pills: ['Java', 'Spring Boot', 'MongoDB', 'RabbitMQ'],
+                    category: 'Backend · Microservices',
+                    focusDesc: 'Decoupled ride-sharing backend architecture decomposed into four independent Spring Boot microservices with strict data boundaries, JWT authentication, and event-driven asynchronous communication.',
+                    highlights: [
+                        'Domain-Driven Design (DDD) decomposition across Account, Driver & Vehicle, Ride Management, and Fare & Payment services',
+                        'Isolated persistence boundaries using MongoDB Atlas partitioned databases with dedicated role-scoped credentials',
+                        'Asynchronous event publishing and message broker integration via RabbitMQ for payment and trip settlements'
+                    ],
+                    focusTags: ['Java', 'Spring Boot', 'MongoDB', 'RabbitMQ', 'REST APIs', 'Microservices'],
+                    links: [
+                        { type: 'github', label: 'GitHub Repository', url: 'https://github.com/itz-im45h4/AD-project' }
+                    ]
+                },
+
                 {
                     id: 'LifeLine:',
                     title: 'Blood Donation & Management System',
@@ -3160,29 +3189,7 @@ hello if u looking for my source code then here it is lol :D ENJOY BAHAHAHAHHA
                         { type: 'github', label: 'View Source on GitHub', url: 'https://github.com/IT24201195/Beauty-Salon-Appointment-Booking-System' }
                     ]
                 },
-                {
-                    id: 'train',
-                    title: 'Train Reservation System',
-                    tags: 'Web Design, Java, MySQL',
-                    preview: {
-                        type: 'image',
-                        src: 'images/train.png',
-                        alt: 'Train Reservation System'
-                    },
-                    shortDesc: 'Full-featured railway ticketing and schedule management platform supporting seat allocation, route lookups, and passenger bookings.',
-                    pills: ['Java', 'MySQL', 'MVC'],
-                    category: 'Full-Stack · Enterprise Web',
-                    focusDesc: 'Comprehensive web-based railway reservation and schedule management platform engineered with Java and MySQL. Designed to handle passenger ticket bookings, train route lookups, seat availability, and administrative schedule control.',
-                    highlights: [
-                        'Relational MySQL database schema for routes, schedules, seats, and passenger bookings',
-                        'Java MVC backend handling authentication, reservation transactions, and validation',
-                        'Modern dark-gold UI theme for intuitive route search and ticket management'
-                    ],
-                    focusTags: ['Java', 'MySQL', 'JDBC / Servlets', 'MVC Architecture', 'Web Design'],
-                    links: [
-                        { type: 'github', label: 'View Source on GitHub', url: 'https://github.com/ThevinduDha/Train-Reservation-Website' }
-                    ]
-                },
+              
 
                 {
                     id: 'cicd',
